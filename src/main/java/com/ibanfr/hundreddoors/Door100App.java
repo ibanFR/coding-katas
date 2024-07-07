@@ -14,9 +14,9 @@ public class Door100App {
     }
     
     protected Door100App(int doors){
-        this.doors = IntStream.range(0,doors)
-            .mapToObj(i -> new Door())
-            .collect(Collectors.toList());
+        this.doors = IntStream.range(0, doors)
+                .mapToObj(i -> new Door())
+                .toList();
     }
     
     public void passDoors(int times){
@@ -32,10 +32,10 @@ public class Door100App {
     }
     
     public String answer() {
-        
-        return "Open doors: "+IntStream.rangeClosed(1, doors.size())
-            .filter(i->doors.get(i-1).isOpen())
-            .mapToObj(Integer::toString)
-            .collect(Collectors.joining(", "));
+
+        return "Open doors: " + IntStream.rangeClosed(1, doors.size())
+                .filter(i -> doors.get(i - 1).isOpen())
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining(", "));
     }
 }
