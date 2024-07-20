@@ -11,4 +11,5 @@ Source: https://github.com/gigasquid/wonderland-clojure-katas
 2- a wonderland number multiplied by 2 has same digits as the original number
 3- a wonderland number multiplied by 2,3,4,5,6
 4- wonderland number multiplied by 7 does not have same digits as the original number
+5- find the wonderland number
 
