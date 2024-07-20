@@ -7,3 +7,10 @@ The third time, every 3rd door (door #3, #6, #9, ...), etc, until you only visit
 Question: What state are the doors in after the last pass? Which are open, which are closed?
 
 [Source http://rosettacode.org]
+
+
+// TEST LIST
+1- All doors are initially closed.
+2- User visits every door.
+3- User visits every 2nd door.
+4- User has completed the last pass.
