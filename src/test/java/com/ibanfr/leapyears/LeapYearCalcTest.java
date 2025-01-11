@@ -13,8 +13,8 @@ class LeapYearCalcTest {
     // [X] - leap year is divisible by 4 but not by 100
     // [X] - leap year is divisible by 4 and 100 and 400
     // [X] - 1996 is a typical leap year
-    // [] - 2000 is an atypical leap year
-    // [] - 2001 is a typical common year
+    // [X] - 2000 is an atypical leap year
+    // [X] - 2001 is a typical common year
     // [] - 1900 is an atypical common year
 
 
@@ -42,5 +42,17 @@ class LeapYearCalcTest {
     void a_typical_leap_year_is_1996() {
         assertThat(isLeapYear(1996))
                 .isTrue();
+    }
+
+    @Test
+    void a_non_typical_leap_year_is_2000() {
+        assertThat(isLeapYear(2000))
+                .isTrue();
+    }
+
+    @Test
+    void a_typical_common_year() {
+        assertThat(isLeapYear(2001))
+                .isFalse();
     }
 }
