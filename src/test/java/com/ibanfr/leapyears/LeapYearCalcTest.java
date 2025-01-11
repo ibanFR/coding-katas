@@ -15,7 +15,7 @@ class LeapYearCalcTest {
     // [X] - 1996 is a typical leap year
     // [X] - 2000 is an atypical leap year
     // [X] - 2001 is a typical common year
-    // [] - 1900 is an atypical common year
+    // [X] - 1900 is an atypical common year
 
 
     @Test
@@ -53,6 +53,12 @@ class LeapYearCalcTest {
     @Test
     void a_typical_common_year() {
         assertThat(isLeapYear(2001))
+                .isFalse();
+    }
+
+    @Test
+    void an_atypical_common_year() {
+        assertThat(isLeapYear(1900))
                 .isFalse();
     }
 }
