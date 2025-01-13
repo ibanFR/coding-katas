@@ -19,3 +19,8 @@ The exercises are tested using JUnit 5.
 - [Coding Dojo](https://codingdojo.org/practices/KataCatalogue/)
 - [Cyber-Dojo](https://cyber-dojo.org/creator/home)
 - [CodeKata](http://codekata.com/)
+
+## TODO
+
+- [ ] create a site to display the exercises with [Minimal mistakes](https://github.com/mmistakes/minimal-mistakes)
+  Jekyll theme.
