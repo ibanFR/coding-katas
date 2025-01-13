@@ -13,3 +13,24 @@ For example, 2001 is a typical common year and 1996 is a typical leap year, wher
 
 1 - Explain the Leap Years kata
 2 - Create Test list 
+
+# Solution
+
+```java
+public class LeapYearCalculator {
+
+
+    public static boolean isLeapYear(int year) {
+
+        if (year % 400 == 0) {
+            return true;
+        }
+        if (year % 100 == 0) {
+            return false;
+        }
+        return year % 4 == 0;
+    }
+}
+```
+
+See also Emily Bache's [Leap Year Examples](https://github.com/emilybache/LeapYearTestExamples) Github repository.

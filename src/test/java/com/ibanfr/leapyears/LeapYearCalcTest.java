@@ -7,17 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LeapYearCalcTest {
 
-
-    //TEST LIST
-    // [X] - leap year is divisible by 4
-    // [X] - leap year is divisible by 4 but not by 100
-    // [X] - leap year is divisible by 4 and 100 and 400
-    // [X] - 1996 is a typical leap year
-    // [X] - 2000 is an atypical leap year
-    // [X] - 2001 is a typical common year
-    // [X] - 1900 is an atypical common year
-
-
     @Test
     void leap_year_is_divisible_by_4() {
         assertThat(isLeapYear(4))
