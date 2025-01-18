@@ -14,6 +14,8 @@ For example, 2001 is a typical common year and 1996 is a typical leap year, wher
 1 - Explain the Leap Years kata
 2 - Create Test list 
 
+- [Gherkin intro](https://sammancoaching.org/learning_hours/test_design/cucumber_comparison.html)
+
 # Solution
 
 ```java
