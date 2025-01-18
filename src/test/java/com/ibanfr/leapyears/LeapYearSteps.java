@@ -17,7 +17,7 @@ public class LeapYearSteps {
         this.year = year;
     }
 
-    @When("I check if it is a Leap Year")
+    @When("I check if the year is a Leap Year")
     public void iCheckIfItIsALeapYear() {
         isLeapYear = LeapYearCalculator.isLeapYear(year);
     }

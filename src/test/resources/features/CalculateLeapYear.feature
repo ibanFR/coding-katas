@@ -12,7 +12,7 @@ Feature: Calculate Leap Year
 
     Scenario: typical leap year
       Given the year is 1996
-      When I check if it is a Leap Year
+      When I check if the year is a Leap Year
       Then the result should be true
 
 
@@ -20,5 +20,6 @@ Feature: Calculate Leap Year
 
   Scenario: atypical common year
     Given the year is 1900
-    When I check if it is a Leap Year
+    When I check if the year is a Leap Year
     Then the result should be false
+
