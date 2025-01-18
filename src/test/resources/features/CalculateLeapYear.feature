@@ -14,3 +14,11 @@ Feature: Calculate Leap Year
       Given the year is 1996
       When I check if it is a Leap Year
       Then the result should be true
+
+
+  Rule: A Leap Year is NOT divisible by 100
+
+  Scenario: atypical common year
+    Given the year is 1900
+    When I check if it is a Leap Year
+    Then the result should be false
