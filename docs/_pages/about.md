@@ -1,8 +1,17 @@
 ---
 permalink: /about/
 title: "About"
+author_profile: true
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+I'm a passionate Software Engineer with over 17 years of hands-on experience in software development, specializing in
+Software Architecture, Behavior Driven Development (BDD), Domain Driven Design (DDD), Test Driven Development (TDD) and
+Continuous Delivery.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+Throughout my career, I've had the opportunity to shape and drive impactful software solutions. My expertise lies in
+leveraging the J2EE tech stack to architect and deliver robust, scalable software systems that meet business objectives
+and exceed client expectations.
+
+I'm deeply committed to fostering an environment of continuous learning and creative thinking, where teams can innovate
+and explore new possibilities within the Java ecosystem. I believe in empowering individuals to unleash their full
+potential and achieve collective success.
