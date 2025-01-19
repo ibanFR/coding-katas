@@ -1,8 +1,6 @@
 ---
 permalink: /small-steps/leap-years/
 title: "Leap Years"
-sidebar:
-  nav: "katas"
 ---
 Write a function that returns true or false depending on whether its input integer is a leap year or not.
 
@@ -11,3 +9,7 @@ by 400.
 
 For example, 2001 is a typical common year and 1996 is a typical leap year, whereas 1900 is an atypical common year and
 2000 is an atypical leap year.
+
+## Learning Hours
+- [Using TDD to write a Leap Years function](https://sammancoaching.org/learning_hours/small_steps/demo_tdd_intro.html)
+- [Gherkin intro](https://sammancoaching.org/learning_hours/test_design/cucumber_comparison.html)

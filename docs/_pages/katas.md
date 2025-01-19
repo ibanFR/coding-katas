@@ -1,9 +1,6 @@
 ---
 permalink: /katas/
 title: "Katas"
-sidebar:
-  nav: "katas"
-author_profile: false
 ---
 
 Katas are small coding exercises that help you practice your coding skills. They are a great way to learn a new
