@@ -37,3 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/
+/docs/_site/
+/docs/.jekyll-cache/
