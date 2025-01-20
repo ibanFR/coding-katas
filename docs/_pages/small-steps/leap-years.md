@@ -10,6 +10,27 @@ by 400.
 For example, 2001 is a typical common year and 1996 is a typical leap year, whereas 1900 is an atypical common year and
 2000 is an atypical leap year.
 
+## Solution
+
+```java
+public class LeapYearCalculator {
+
+
+    public static boolean isLeapYear(int year) {
+
+        if (year % 400 == 0) {
+            return true;
+        }
+        if (year % 100 == 0) {
+            return false;
+        }
+        return year % 4 == 0;
+    }
+}
+```
+
+See also Emily Bache's [Leap Year Examples](https://github.com/emilybache/LeapYearTestExamples) Github repository.
+
 ## Learning Hours
 - [Using TDD to write a Leap Years function](https://sammancoaching.org/learning_hours/small_steps/demo_tdd_intro.html)
 - [Gherkin intro](https://sammancoaching.org/learning_hours/test_design/cucumber_comparison.html)
