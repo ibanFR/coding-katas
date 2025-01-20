@@ -2,6 +2,7 @@
 permalink: /about/
 title: "About"
 author_profile: true
+sidebar: false
 ---
 
 I'm a passionate Software Engineer with over 17 years of hands-on experience in software development, specializing in
