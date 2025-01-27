@@ -5,7 +5,6 @@ public class Lift {
     private boolean light;
 
     public void pressButton() {
-        // Do nothing
         light = true;
     }
 
@@ -15,5 +14,9 @@ public class Lift {
 
     public void doorsOpened() {
         light = false;
+    }
+
+    public LiftDoorStatus doors() {
+        return LiftDoorStatus.CLOSED;
     }
 }
