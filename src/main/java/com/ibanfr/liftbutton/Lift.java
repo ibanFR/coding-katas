@@ -9,11 +9,10 @@ public class Lift {
         if (doorStatus == LiftDoorStatus.OPEN) {
             return;
         }
-        closeDoors();
         light = true;
     }
 
-    private void closeDoors() {
+    public void closeDoors() {
         this.doorStatus = LiftDoorStatus.CLOSED;
     }
 
