@@ -3,9 +3,15 @@ package com.ibanfr.liftbutton;
 public class Lift {
 
     private boolean light;
+    private LiftDoorStatus doorStatus;
 
     public void pressButton() {
+        closeDoors();
         light = true;
+    }
+
+    private void closeDoors() {
+        this.doorStatus = LiftDoorStatus.CLOSED;
     }
 
     public boolean lights() {
@@ -17,6 +23,6 @@ public class Lift {
     }
 
     public LiftDoorStatus doors() {
-        return LiftDoorStatus.CLOSED;
+        return doorStatus;
     }
 }

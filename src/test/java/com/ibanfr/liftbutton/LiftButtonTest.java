@@ -12,7 +12,7 @@ class LiftButtonTest {
 
     // TEST LIST
     // [X]- should switch lights on when button is pressed
-    // [] - should close the doors when button is pressed
+    // [X] - should close the doors when button is pressed
     // [] - should open the doors when lift arrives
     // [X]- should switch lights off when doors open
     // [X]- should keep lights on when button is pressed while doors are closed
@@ -90,7 +90,7 @@ class LiftButtonTest {
 
         //given button pressed
         lift.pressButton();
-        //given doors opened
+        //given lift arrived and doors opened
         lift.doorsOpened();
 
         //when
