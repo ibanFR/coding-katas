@@ -6,6 +6,9 @@ public class Lift {
     private LiftDoorStatus doorStatus;
 
     public void pressButton() {
+        if (doorStatus == LiftDoorStatus.OPEN) {
+            return;
+        }
         closeDoors();
         light = true;
     }

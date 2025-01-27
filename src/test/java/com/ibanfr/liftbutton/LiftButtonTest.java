@@ -101,7 +101,6 @@ class LiftButtonTest {
 
     @Test
     @DisplayName("should keep lights off when button is pressed while doors are open")
-    @Disabled
     void should_keep_lights_off_when_button_is_pressed_while_doors_are_open() {
 
         //given button pressed
