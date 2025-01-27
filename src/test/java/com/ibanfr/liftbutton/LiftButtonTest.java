@@ -13,7 +13,7 @@ class LiftButtonTest {
     // TEST LIST
     // [X]- should switch lights on when button is pressed
     // [X] - should close the doors when button is pressed
-    // [] - should open the doors when lift arrives
+    // [X] - should open the doors when lift arrives
     // [X]- should switch lights off when doors open
     // [X]- should keep lights on when button is pressed while doors are closed
     // []- should keep lights off when button is pressed while doors are open
@@ -52,6 +52,22 @@ class LiftButtonTest {
     }
 
     @Test
+    @DisplayName("should open the doors when lift arrives")
+    void should_open_the_doors_when_lift_arrives() {
+
+        //given
+        lift.pressButton();
+
+        //when
+        lift.arrived();
+
+        //then
+        assertThat(lift.doors())
+                .as("doors should be OPEN")
+                .isEqualTo(LiftDoorStatus.OPEN);
+    }
+
+    @Test
     @DisplayName("should switch lights off when doors open")
     void should_switch_lights_off_when_doors_open() {
 
@@ -59,7 +75,7 @@ class LiftButtonTest {
         lift.pressButton();
 
         //when
-        lift.doorsOpened();
+        lift.arrived();
 
         //then
         assertThat(lift.lights())
@@ -91,7 +107,7 @@ class LiftButtonTest {
         //given button pressed
         lift.pressButton();
         //given lift arrived and doors opened
-        lift.doorsOpened();
+        lift.arrived();
 
         //when
         lift.pressButton();

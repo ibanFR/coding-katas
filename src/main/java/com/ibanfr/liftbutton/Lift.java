@@ -18,8 +18,13 @@ public class Lift {
         return light;
     }
 
-    public void doorsOpened() {
+    public void arrived() {
+        openDoors();
         light = false;
+    }
+
+    private void openDoors() {
+        this.doorStatus = LiftDoorStatus.OPEN;
     }
 
     public LiftDoorStatus doors() {
