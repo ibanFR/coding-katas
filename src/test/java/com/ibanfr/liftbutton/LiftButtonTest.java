@@ -18,7 +18,7 @@ class LiftButtonTest {
     }
 
     @Test
-    @DisplayName("should close the lift door's ")
+    @DisplayName("should close the lift doors ")
     void should_close_the_lift_doors() {
 
         //when
@@ -31,7 +31,7 @@ class LiftButtonTest {
     }
 
     @Test
-    @DisplayName("should switch lights on when button is pressed")
+    @DisplayName("should switch lights ON when button is pressed")
     void should_switch_lights_on_when_button_is_pressed() {
 
         //when
@@ -39,8 +39,8 @@ class LiftButtonTest {
 
         //then
         assertThat(lift.lights())
-                .as("Lights should be on")
-                .isTrue();
+                .as("Lights should be ON")
+                .isEqualTo(LiftLampStatus.ON);
     }
 
     @Test
@@ -71,8 +71,8 @@ class LiftButtonTest {
 
         //then
         assertThat(lift.lights())
-                .as("lights should be off")
-                .isFalse();
+                .as("lights should be OFF")
+                .isEqualTo(LiftLampStatus.OFF);
     }
 
     @Test
@@ -87,8 +87,8 @@ class LiftButtonTest {
 
         //then
         assertThat(lift.lights())
-                .as("lights should be on")
-                .isTrue();
+                .as("lights should be ON")
+                .isEqualTo(LiftLampStatus.ON);
     }
 
     @Test
@@ -106,8 +106,8 @@ class LiftButtonTest {
 
         //then
         assertThat(lift.lights())
-                .as("lights should be off")
-                .isFalse();
+                .as("lights should be OFF")
+                .isEqualTo(LiftLampStatus.OFF);
     }
 
 }
