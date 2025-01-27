@@ -1,5 +1,6 @@
 package com.ibanfr.liftbutton;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +14,17 @@ class LiftButtonTest {
     // []- should keep lights on when button is pressed while doors are closed
     // []- should keep lights off when button is pressed while doors are open
 
+    Lift lift;
+
+    @BeforeEach
+    void setUp() {
+        lift = new Lift();
+
+    }
+
     @Test
     @DisplayName("should switch lights on when button is pressed")
     void should_switch_lights_on_when_button_is_pressed() {
-
-        //given
-        Lift lift = new Lift();
 
         //when
         lift.pressButton();
@@ -34,7 +40,6 @@ class LiftButtonTest {
     void should_switch_lights_off_when_doors_open() {
 
         //given
-        Lift lift = new Lift();
         lift.pressButton();
 
         //when
