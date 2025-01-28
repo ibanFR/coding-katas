@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.ibanfr.liftbutton.LiftDoorStatus.CLOSED;
+import static com.ibanfr.liftbutton.DoorStatus.CLOSED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LiftButtonTest {
@@ -40,7 +40,7 @@ class LiftButtonTest {
         //then
         assertThat(lift.lights())
                 .as("Lights should be ON")
-                .isEqualTo(LiftLampStatus.ON);
+                .isEqualTo(LampStatus.ON);
     }
 
     @Test
@@ -56,7 +56,7 @@ class LiftButtonTest {
         //then
         assertThat(lift.doors())
                 .as("doors should be OPEN")
-                .isEqualTo(LiftDoorStatus.OPEN);
+                .isEqualTo(DoorStatus.OPEN);
     }
 
     @Test
@@ -72,7 +72,7 @@ class LiftButtonTest {
         //then
         assertThat(lift.lights())
                 .as("lights should be OFF")
-                .isEqualTo(LiftLampStatus.OFF);
+                .isEqualTo(LampStatus.OFF);
     }
 
     @Test
@@ -88,7 +88,7 @@ class LiftButtonTest {
         //then
         assertThat(lift.lights())
                 .as("lights should be ON")
-                .isEqualTo(LiftLampStatus.ON);
+                .isEqualTo(LampStatus.ON);
     }
 
     @Test
@@ -107,7 +107,7 @@ class LiftButtonTest {
         //then
         assertThat(lift.lights())
                 .as("lights should be OFF")
-                .isEqualTo(LiftLampStatus.OFF);
+                .isEqualTo(LampStatus.OFF);
     }
 
 }

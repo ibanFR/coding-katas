@@ -1,5 +1,5 @@
 package com.ibanfr.liftbutton;
 
-public enum LiftDoorStatus {
+public enum DoorStatus {
     OPEN, CLOSED
 }

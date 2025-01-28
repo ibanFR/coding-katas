@@ -1,5 +1,5 @@
 package com.ibanfr.liftbutton;
 
-public enum LiftLampStatus {
+public enum LampStatus {
     OFF, ON
 }

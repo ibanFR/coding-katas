@@ -2,30 +2,30 @@ package com.ibanfr.liftbutton;
 
 public class Lift {
 
-    private LiftLampStatus liftLampStatus;
-    private LiftDoorStatus doorStatus;
+    private LampStatus liftLampStatus;
+    private DoorStatus doorStatus;
 
     public void closeDoors() {
-        this.doorStatus = LiftDoorStatus.CLOSED;
+        this.doorStatus = DoorStatus.CLOSED;
     }
 
     public void pressButton() {
-        if (doorStatus == LiftDoorStatus.OPEN) {
+        if (doorStatus == DoorStatus.OPEN) {
             return;
         }
-        liftLampStatus = LiftLampStatus.ON;
+        liftLampStatus = LampStatus.ON;
     }
 
     public void arrived() {
-        doorStatus = LiftDoorStatus.OPEN;
-        liftLampStatus = LiftLampStatus.OFF;
+        doorStatus = DoorStatus.OPEN;
+        liftLampStatus = LampStatus.OFF;
     }
 
-    public LiftLampStatus lights() {
+    public LampStatus lights() {
         return liftLampStatus;
     }
 
-    public LiftDoorStatus doors() {
+    public DoorStatus doors() {
         return doorStatus;
     }
 }
