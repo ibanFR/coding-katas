@@ -6,6 +6,6 @@ While the doors are open, pressing the button does not switch the light on.
 
 This is a state diagram:
 
-
+![State Diagram](/docs/assets/images/lift_button_states_transitions.png)
 
  
