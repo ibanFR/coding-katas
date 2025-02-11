@@ -111,6 +111,22 @@ class ShoppingBasketDiscountTest {
                 .isEqualTo(350);
     }
 
+    @Test
+    @DisplayName("should qualify for 5% discount when adding Item D with unit price 101$")
+    void should_qualify_for_5_discount_when_adding_Item_D_with_unit_price_101$() {
+
+        //given
+        Item itemD = new Item(1010);
+
+        //when
+        shoppingBasket.addItem(itemD, 1);
+
+        //then
+        assertThat(shoppingBasket.calculateDiscount())
+                .as("Discount should be 5%")
+                .isEqualTo(5);
+    }
+
     //@Test
     //@DisplayName("should qualify for 5% discount")
     //void should_qualify_for_5_discount() {

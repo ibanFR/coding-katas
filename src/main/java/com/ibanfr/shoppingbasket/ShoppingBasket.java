@@ -28,4 +28,8 @@ public class ShoppingBasket {
                 .filter(item -> item.equals(anItem))
                 .count();
     }
+
+    public long calculateDiscount() {
+        return totalPrice()>100 ? 5 : 0;
+    }
 }
