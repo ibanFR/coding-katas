@@ -19,7 +19,7 @@ class ShoppingBasketDiscountTest {
     // [] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
     // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
     // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
-    // [] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
+    // [X] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
     // [] - should qualify for 5% discount when adding Item D with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A
     // [] - should qualify for 5% discount when adding 11 times Item A
@@ -73,6 +73,24 @@ class ShoppingBasketDiscountTest {
         assertThat(shoppingBasket.quantityOf(itemA))
                 .as("Quantity of Item A should be %d", quantity)
                 .isEqualTo(quantity);
+    }
+
+    @Test
+    @DisplayName("quantity of Item B should be 1 when Item A and Item B are added to the shopping basket")
+    void quantity_of_Item_B_should_be_1_when_Item_A_and_Item_B_are_added_to_the_shopping_basket() {
+
+        //given
+        Item itemA = new Item(100);
+        Item itemB = new Item(250);
+
+        //when
+        shoppingBasket.addItem(itemA, 2);
+        shoppingBasket.addItem(itemB, 1);
+
+        //then
+        assertThat(shoppingBasket.quantityOf(itemB))
+                .as("Quantity of Item B should be 1")
+                .isOne();
     }
 
     //@Test
