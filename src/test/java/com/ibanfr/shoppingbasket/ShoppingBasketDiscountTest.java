@@ -3,6 +3,8 @@ package com.ibanfr.shoppingbasket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +18,7 @@ class ShoppingBasketDiscountTest {
     // [X] - Total price should be 10$ when adding Item A to the shopping basket
     // [] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
     // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
-    // [] - quantity of Item A should be 2 when Item A is added twice the shopping basket
+    // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
     // [] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
     // [] - should qualify for 5% discount when adding Item D with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A
@@ -55,36 +57,22 @@ class ShoppingBasketDiscountTest {
                 .isEqualTo(100);
     }
 
-    @Test
-    @DisplayName("quantity of Item A should be 1 when Item A is added to the shopping basket")
-    void quantity_of_Item_A_should_be_1_when_Item_A_is_added_to_the_shopping_basket() {
+
+    @ParameterizedTest(name = "Quantity of Item A should be {0}")
+    @ValueSource(ints = {1, 2})
+    @DisplayName("should return the quantity of the given item in the shopping basket")
+    void should_return_the_quantity_of_the_given_item_in_the_shopping_basket(int quantity) {
 
         //given
         Item itemA = new Item(100);
 
         //when
-        shoppingBasket.addItem(itemA, 1);
+        shoppingBasket.addItem(itemA, quantity);
 
         //then
         assertThat(shoppingBasket.quantityOf(itemA))
-                .as("Quantity of Item A should be 1")
-                .isOne();
-    }
-
-    @Test
-    @DisplayName("quantity of Item A should be 2 when Item A is added twice the shopping basket")
-    void quantity_of_Item_A_should_be_2_when_Item_A_is_added_twice_the_shopping_basket() {
-
-        //given
-        Item itemA = new Item(100);
-
-        //when
-        shoppingBasket.addItem(itemA, 2);
-
-        //then
-        assertThat(shoppingBasket.quantityOf(itemA))
-                .as("Quantity of Item A should be 2")
-                .isEqualTo(2);
+                .as("Quantity of Item A should be %d", quantity)
+                .isEqualTo(quantity);
     }
 
     //@Test
