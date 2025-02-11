@@ -1,18 +1,22 @@
 package com.ibanfr.shoppingbasket;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ShoppingBasketDiscountTest {
-
+    
+    // system under test
+    private ShoppingBasket shoppingBasket;
 
     // TEST LIST
     // [X] - Total price should be 0$ when basket is empty
-    // [] - Total price should be 10$ when adding Item A to the shopping basket
+    // [X] - Total price should be 10$ when adding Item A to the shopping basket
     // [] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
-    // [] - quantity of Item A should be 1 when Item A is added to the shopping basket
+    // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
+    // [] - quantity of Item A should be 2 when Item A is added twice the shopping basket
     // [] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
     // [] - should qualify for 5% discount when adding Item D with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A
@@ -20,17 +24,67 @@ class ShoppingBasketDiscountTest {
     // [] - should qualify for 10% discount when adding 21 times Item A
     // [] - total price is 189$ when adding 21 times Item A
 
+    @BeforeEach
+    void setUp() {
+        shoppingBasket = new ShoppingBasket();
+    }
+
     @Test
     @DisplayName("should have a total price of 0$ when basket is empty")
     void should_have_a_total_price_of_0$_when_basket_is_empty() {
-
-        //given
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
 
         //then
         assertThat(shoppingBasket.totalPrice())
                 .as("Total price should be 0")
                 .isZero();
+    }
+
+    @Test
+    @DisplayName("should have a total price of 10$ when adding Item A to the shopping basket")
+    void should_have_a_total_price_of_10$_when_adding_Item_A_to_the_shopping_basket() {
+
+        //given
+        Item itemA = new Item(100);
+
+        //when
+        shoppingBasket.addItem(itemA, 1);
+
+        //then
+        assertThat(shoppingBasket.totalPrice())
+                .as("total price should be 100")
+                .isEqualTo(100);
+    }
+
+    @Test
+    @DisplayName("quantity of Item A should be 1 when Item A is added to the shopping basket")
+    void quantity_of_Item_A_should_be_1_when_Item_A_is_added_to_the_shopping_basket() {
+
+        //given
+        Item itemA = new Item(100);
+
+        //when
+        shoppingBasket.addItem(itemA, 1);
+
+        //then
+        assertThat(shoppingBasket.quantityOf(itemA))
+                .as("Quantity of Item A should be 1")
+                .isOne();
+    }
+
+    @Test
+    @DisplayName("quantity of Item A should be 2 when Item A is added twice the shopping basket")
+    void quantity_of_Item_A_should_be_2_when_Item_A_is_added_twice_the_shopping_basket() {
+
+        //given
+        Item itemA = new Item(100);
+
+        //when
+        shoppingBasket.addItem(itemA, 2);
+
+        //then
+        assertThat(shoppingBasket.quantityOf(itemA))
+                .as("Quantity of Item A should be 2")
+                .isEqualTo(2);
     }
 
     //@Test
