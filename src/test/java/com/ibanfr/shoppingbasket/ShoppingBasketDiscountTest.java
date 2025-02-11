@@ -16,7 +16,7 @@ class ShoppingBasketDiscountTest {
     // TEST LIST
     // [X] - Total price should be 0$ when basket is empty
     // [X] - Total price should be 10$ when adding Item A to the shopping basket
-    // [] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
+    // [X] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
     // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
     // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
     // [X] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
@@ -84,13 +84,31 @@ class ShoppingBasketDiscountTest {
         Item itemB = new Item(250);
 
         //when
-        shoppingBasket.addItem(itemA, 2);
+        shoppingBasket.addItem(itemA, 1);
         shoppingBasket.addItem(itemB, 1);
 
         //then
         assertThat(shoppingBasket.quantityOf(itemB))
                 .as("Quantity of Item B should be 1")
                 .isOne();
+    }
+
+    @Test
+    @DisplayName("should have a total price of 35$ when Item A and Item B are added to the shopping basket")
+    void should_have_a_total_price_of_35$_when_Item_A_and_Item_B_are_added_to_the_shopping_basket() {
+
+        //given
+        Item itemA = new Item(100);
+        Item itemB = new Item(250);
+
+        //when
+        shoppingBasket.addItem(itemA, 1);
+        shoppingBasket.addItem(itemB, 1);
+
+        //then
+        assertThat(shoppingBasket.totalPrice())
+                .as("total price should be 350")
+                .isEqualTo(350);
     }
 
     //@Test
