@@ -29,7 +29,7 @@ public class ShoppingBasket {
                 .count();
     }
 
-    public long calculateDiscount() {
+    public long applicableDiscount() {
         return totalPrice()>100 ? 5 : 0;
     }
 }

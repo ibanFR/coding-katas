@@ -20,7 +20,8 @@ class ShoppingBasketDiscountTest {
     // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
     // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
     // [X] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
-    // [] - should qualify for 5% discount when adding Item D with unit price 101$
+    // [] - applicable discount should be 0 when total price is less than 100$
+    // [X] - should qualify for 5% discount when adding Item D with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A
     // [] - should qualify for 5% discount when adding 11 times Item A
     // [] - should qualify for 10% discount when adding 21 times Item A
@@ -112,6 +113,16 @@ class ShoppingBasketDiscountTest {
     }
 
     @Test
+    @DisplayName("applicable discount should be 0 when total price is less than 100$")
+    void applicable_discount_should_be_0_when_total_price_is_less_than_100$() {
+
+        //then
+        assertThat(shoppingBasket.applicableDiscount())
+                .as("applicable discount should be 0")
+                .isZero();
+    }
+
+    @Test
     @DisplayName("should qualify for 5% discount when adding Item D with unit price 101$")
     void should_qualify_for_5_discount_when_adding_Item_D_with_unit_price_101$() {
 
@@ -122,8 +133,8 @@ class ShoppingBasketDiscountTest {
         shoppingBasket.addItem(itemD, 1);
 
         //then
-        assertThat(shoppingBasket.calculateDiscount())
-                .as("Discount should be 5%")
+        assertThat(shoppingBasket.applicableDiscount())
+                .as("Discount should be 5")
                 .isEqualTo(5);
     }
 
