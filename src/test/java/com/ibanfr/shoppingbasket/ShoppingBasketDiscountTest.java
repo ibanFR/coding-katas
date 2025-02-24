@@ -26,7 +26,7 @@ class ShoppingBasketDiscountTest {
     // [X] - applicable discount should be 0 when total price is less than 100$
     // [X] - should qualify for 5% discount when adding Item D with unit price 101$
     // [X] - should qualify for 10% discount when total price is greater than 200$
-    // [] - total discount should be 0 when price without discount is less than 100$
+    // [X] - total discount should be 0 when price without discount is less than 100$
     // [] - total discount should be 5.05 when price without discount is less than 101$
     // [] - total discount should be 20.01 when price without discount is less than 101$
     // [] - total price is 94.95$ when adding one Item with unit price 101$
@@ -160,6 +160,17 @@ class ShoppingBasketDiscountTest {
                 .isEqualTo(10);
 
     }
+
+    @Test
+    @DisplayName("total discount should be 0 when price without discount is less than 100$")
+    void total_discount_should_be_0_when_price_without_discount_is_less_than_100$() {
+
+        //then
+        assertThat(shoppingBasket.totalDiscount())
+                .as("Not implemented")
+                .isEqualByComparingTo(BigDecimal.ZERO);
+    }
+
 
     @Test
     @Disabled("WIP")
