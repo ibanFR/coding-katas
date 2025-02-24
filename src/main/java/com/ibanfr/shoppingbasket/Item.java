@@ -1,5 +1,7 @@
 package com.ibanfr.shoppingbasket;
 
-public record Item(int unitPrice) {
+import java.math.BigDecimal;
+
+public record Item(BigDecimal unitPrice) {
 
 }

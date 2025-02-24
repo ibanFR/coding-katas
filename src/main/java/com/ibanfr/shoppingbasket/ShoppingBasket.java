@@ -1,5 +1,6 @@
 package com.ibanfr.shoppingbasket;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +12,10 @@ public class ShoppingBasket {
         items = new ArrayList<>();
     }
 
-    public int totalPrice() {
+    public BigDecimal totalPrice() {
         return items.stream()
-                .mapToInt(Item::unitPrice)
-                .sum();
+                .map(Item::unitPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void addItem(Item itemA, int quantity) {
@@ -30,6 +31,10 @@ public class ShoppingBasket {
     }
 
     public long applicableDiscount() {
-        return totalPrice()>100 ? 5 : 0;
+        if (totalPrice().compareTo(BigDecimal.valueOf(200)) > 0)
+            return 10;
+        if (totalPrice().compareTo(BigDecimal.valueOf(100)) > 0)
+            return 5;
+        return 0;
     }
 }

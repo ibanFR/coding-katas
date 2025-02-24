@@ -1,10 +1,13 @@
 package com.ibanfr.shoppingbasket;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,8 +23,9 @@ class ShoppingBasketDiscountTest {
     // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
     // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
     // [X] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
-    // [] - applicable discount should be 0 when total price is less than 100$
+    // [X] - applicable discount should be 0 when total price is less than 100$
     // [X] - should qualify for 5% discount when adding Item D with unit price 101$
+    // [X] - should qualify for 10% discount when total price is greater than 200$
     // [] - total price is 104,5$ when adding 11 times Item A
     // [] - should qualify for 5% discount when adding 11 times Item A
     // [] - should qualify for 10% discount when adding 21 times Item A
@@ -47,15 +51,15 @@ class ShoppingBasketDiscountTest {
     void should_have_a_total_price_of_10$_when_adding_Item_A_to_the_shopping_basket() {
 
         //given
-        Item itemA = new Item(100);
+        Item itemA = new Item(BigDecimal.valueOf(10));
 
         //when
         shoppingBasket.addItem(itemA, 1);
 
         //then
         assertThat(shoppingBasket.totalPrice())
-                .as("total price should be 100")
-                .isEqualTo(100);
+                .as("total price should be 10")
+                .isEqualByComparingTo(BigDecimal.valueOf(10));
     }
 
 
@@ -65,7 +69,7 @@ class ShoppingBasketDiscountTest {
     void should_return_the_quantity_of_the_given_item_in_the_shopping_basket(int quantity) {
 
         //given
-        Item itemA = new Item(100);
+        Item itemA = new Item(BigDecimal.valueOf(10));
 
         //when
         shoppingBasket.addItem(itemA, quantity);
@@ -81,8 +85,8 @@ class ShoppingBasketDiscountTest {
     void quantity_of_Item_B_should_be_1_when_Item_A_and_Item_B_are_added_to_the_shopping_basket() {
 
         //given
-        Item itemA = new Item(100);
-        Item itemB = new Item(250);
+        Item itemA = new Item(BigDecimal.valueOf(10));
+        Item itemB = new Item(BigDecimal.valueOf(25));
 
         //when
         shoppingBasket.addItem(itemA, 1);
@@ -99,8 +103,8 @@ class ShoppingBasketDiscountTest {
     void should_have_a_total_price_of_35$_when_Item_A_and_Item_B_are_added_to_the_shopping_basket() {
 
         //given
-        Item itemA = new Item(100);
-        Item itemB = new Item(250);
+        Item itemA = new Item(BigDecimal.valueOf(10));
+        Item itemB = new Item(BigDecimal.valueOf(25));
 
         //when
         shoppingBasket.addItem(itemA, 1);
@@ -109,7 +113,7 @@ class ShoppingBasketDiscountTest {
         //then
         assertThat(shoppingBasket.totalPrice())
                 .as("total price should be 350")
-                .isEqualTo(350);
+                .isEqualByComparingTo(BigDecimal.valueOf(35));
     }
 
     @Test
@@ -127,7 +131,7 @@ class ShoppingBasketDiscountTest {
     void should_qualify_for_5_discount_when_adding_Item_D_with_unit_price_101$() {
 
         //given
-        Item itemD = new Item(1010);
+        Item itemD = new Item(BigDecimal.valueOf(101));
 
         //when
         shoppingBasket.addItem(itemD, 1);
@@ -136,6 +140,41 @@ class ShoppingBasketDiscountTest {
         assertThat(shoppingBasket.applicableDiscount())
                 .as("Discount should be 5")
                 .isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("should qualify for 10% discount when total price is greater than 200")
+    void should_qualify_for_10_discount_when_total_price_is_greater_than_200() {
+
+        //given
+        Item itemE = new Item(BigDecimal.valueOf(201));
+
+        //when
+        shoppingBasket.addItem(itemE, 1);
+
+        //then
+        assertThat(shoppingBasket.applicableDiscount())
+                .as("Discount should be 10%")
+                .isEqualTo(10);
+
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("total price is 104,5$ when adding 11 times Item A")
+    void total_price_is_1045_when_adding_11_times_Item_A() {
+
+        //given
+        Item itemA = new Item(BigDecimal.valueOf(10));
+
+        //when
+        shoppingBasket.addItem(itemA, 11);
+
+        //then
+        assertThat(shoppingBasket.totalPrice())
+                .as("total price should be 1045")
+                .isEqualTo(1045);
+
     }
 
     //@Test
@@ -156,7 +195,7 @@ class ShoppingBasketDiscountTest {
     //    shoppingBasket.addItem(itemC, 6);
     //
     //    //then
-    //    assertThat(shoppingBasket.calculateDiscount())
+    //    assertThat(shoppingBasket.applicableDiscount())
     //            .as("should qualify for a 5% discount")
     //            .isEqualTo(5);
     //    //then
