@@ -13,8 +13,10 @@ main:
 katas:
   - title: Small Steps
     children:
-      - title: "Using TDD to write Leap Years function"
+      - title: "Leap Years"
         url: /small-steps/leap-years/
+      - title: "Shopping Basket Discount"
+        url: /small-steps/shopping-basket-discount/
 #      - title: "Structure"
 #        url: /docs/structure/
 #      - title: "Installation"
