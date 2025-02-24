@@ -27,7 +27,7 @@ class ShoppingBasketDiscountTest {
     // [X] - should qualify for 5% discount when adding Item D with unit price 101$
     // [X] - should qualify for 10% discount when total price is greater than 200$
     // [X] - total discount should be 0 when price without discount is less than 100$
-    // [] - total discount should be 5.05 when price without discount is less than 101$
+    // [X] - total discount should be 5.05 when price without discount is 101$
     // [] - total discount should be 20.01 when price without discount is less than 101$
     // [] - total price is 94.95$ when adding one Item with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A with unit price 10$
@@ -169,6 +169,22 @@ class ShoppingBasketDiscountTest {
         assertThat(shoppingBasket.totalDiscount())
                 .as("Not implemented")
                 .isEqualByComparingTo(BigDecimal.ZERO);
+    }
+
+    @Test
+    @DisplayName("total discount should be 5.05 when price without discount is 101$")
+    void total_discount_should_be_505_when_price_without_discount_is_101$() {
+
+        //given
+        Item itemD = new Item(BigDecimal.valueOf(101));
+
+        //when
+        shoppingBasket.addItem(itemD, 1);
+
+        //then
+        assertThat(shoppingBasket.totalDiscount())
+                .as("total discount should be 5.05$")
+                .isEqualByComparingTo(BigDecimal.valueOf(5.05));
     }
 
 

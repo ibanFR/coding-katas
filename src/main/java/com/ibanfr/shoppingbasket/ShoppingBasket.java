@@ -1,6 +1,7 @@
 package com.ibanfr.shoppingbasket;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class ShoppingBasket {
     }
 
     protected BigDecimal totalDiscount() {
-        return BigDecimal.ZERO;
+        return priceWithoutDiscount()
+                .multiply(BigDecimal.valueOf(applicableDiscount()).setScale(2, RoundingMode.HALF_UP))
+                .divide(BigDecimal.valueOf(100), RoundingMode.HALF_UP);
     }
 
     public void addItem(Item itemA, int quantity) {
