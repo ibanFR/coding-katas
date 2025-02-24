@@ -26,10 +26,12 @@ class ShoppingBasketDiscountTest {
     // [X] - applicable discount should be 0 when total price is less than 100$
     // [X] - should qualify for 5% discount when adding Item D with unit price 101$
     // [X] - should qualify for 10% discount when total price is greater than 200$
-    // [] - total price is 104,5$ when adding 11 times Item A
-    // [] - should qualify for 5% discount when adding 11 times Item A
-    // [] - should qualify for 10% discount when adding 21 times Item A
-    // [] - total price is 189$ when adding 21 times Item A
+    // [] - total discount should be 0 when price without discount is less than 100$
+    // [] - total discount should be 5.05 when price without discount is less than 101$
+    // [] - total discount should be 20.01 when price without discount is less than 101$
+    // [] - total price is 94.95$ when adding one Item with unit price 101$
+    // [] - total price is 104,5$ when adding 11 times Item A with unit price 10$
+    // [] - total price is 151.94$ when adding 5 times Item A with unit price 10$, 2 times Item B with unit price 25$ and 6 times Item C with unit price 9.99$
 
     @BeforeEach
     void setUp() {
@@ -160,7 +162,7 @@ class ShoppingBasketDiscountTest {
     }
 
     @Test
-    @Disabled
+    @Disabled("WIP")
     @DisplayName("total price is 104,5$ when adding 11 times Item A")
     void total_price_is_1045_when_adding_11_times_Item_A() {
 
@@ -173,7 +175,7 @@ class ShoppingBasketDiscountTest {
         //then
         assertThat(shoppingBasket.totalPrice())
                 .as("total price should be 1045")
-                .isEqualTo(1045);
+                .isEqualByComparingTo(BigDecimal.valueOf(104.5));
 
     }
 

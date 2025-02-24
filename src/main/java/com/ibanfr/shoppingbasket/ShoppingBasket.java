@@ -13,9 +13,18 @@ public class ShoppingBasket {
     }
 
     public BigDecimal totalPrice() {
+        return priceWithoutDiscount()
+                .subtract(this.totalDiscount());
+    }
+
+    private BigDecimal priceWithoutDiscount() {
         return items.stream()
                 .map(Item::unitPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    protected BigDecimal totalDiscount() {
+        return BigDecimal.ZERO;
     }
 
     public void addItem(Item itemA, int quantity) {
@@ -31,9 +40,9 @@ public class ShoppingBasket {
     }
 
     public long applicableDiscount() {
-        if (totalPrice().compareTo(BigDecimal.valueOf(200)) > 0)
+        if (priceWithoutDiscount().compareTo(BigDecimal.valueOf(200)) > 0)
             return 10;
-        if (totalPrice().compareTo(BigDecimal.valueOf(100)) > 0)
+        if (priceWithoutDiscount().compareTo(BigDecimal.valueOf(100)) > 0)
             return 5;
         return 0;
     }
