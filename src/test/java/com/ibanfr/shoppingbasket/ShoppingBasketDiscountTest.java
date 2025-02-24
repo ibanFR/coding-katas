@@ -1,7 +1,6 @@
 package com.ibanfr.shoppingbasket;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,22 +17,6 @@ class ShoppingBasketDiscountTest {
     
     // system under test
     private ShoppingBasket shoppingBasket;
-
-    // TEST LIST
-    // [X] - Total price should be 0$ when basket is empty
-    // [X] - Total price should be 10$ when adding Item A to the shopping basket
-    // [X] - should have a total price of 35$ when Item A and Item B are added to the shopping basket
-    // [X] - quantity of Item A should be 1 when Item A is added to the shopping basket
-    // [X] - quantity of Item A should be 2 when Item A is added twice the shopping basket
-    // [X] - quantity of Item B should be 1 when Item A and Item B are added to the shopping basket
-    // [X] - applicable discount should be 0 when total price is less than 100$
-    // [X] - should qualify for 5% discount when adding Item D with unit price 101$
-    // [X] - should qualify for 10% discount when total price is greater than 200$
-    // [X] - total discount should be 0 when price without discount is less than 100$
-    // [X] - total discount should be 5.05 when price without discount is 101$
-    // [] - total discount should be 20.1 when price without discount is 201$
-    // [X] - total price is 104,5$ when adding 11 times Item A with unit price 10$
-    // [] - total price is 151.94$ when adding 5 times Item A with unit price 10$, 2 times Item B with unit price 25$ and 6 times Item C with unit price 9.99$
 
     @BeforeEach
     void setUp() {
@@ -213,30 +196,23 @@ class ShoppingBasketDiscountTest {
 
     }
 
-    //@Test
-    //@DisplayName("should qualify for 5% discount")
-    //void should_qualify_for_5_discount() {
-    //
-    //    //test fixture
-    //    Item itemA = new Item("A", 100);
-    //    Item itemB = new Item("B", 250);
-    //    Item itemC = new Item("C", 999);
-    //
-    //    //given
-    //    ShoppingBasket shoppingBasket = new ShoppingBasket();
-    //
-    //    //when
-    //    shoppingBasket.addItem(itemA, 5);
-    //    shoppingBasket.addItem(itemB, 2);
-    //    shoppingBasket.addItem(itemC, 6);
-    //
-    //    //then
-    //    assertThat(shoppingBasket.applicableDiscount())
-    //            .as("should qualify for a 5% discount")
-    //            .isEqualTo(5);
-    //    //then
-    //    assertThat(shoppingBasket.totalPrice())
-    //            .as("should have a total price of 15194")
-    //            .isEqualTo(15194);
-    //}
+    @Test
+    @DisplayName("total price is 151.94$ when adding 5 times Item A with unit price 10$, 2 times Item B with unit price 25$ and 6 times Item C with unit price 9.99$")
+    void total_price_should_be_151_94$() {
+
+        //test fixture
+        Item itemA = new Item(BigDecimal.valueOf(10));
+        Item itemB = new Item(BigDecimal.valueOf(25));
+        Item itemC = new Item(BigDecimal.valueOf(9.99));
+
+        //when
+        shoppingBasket.addItem(itemA, 5);
+        shoppingBasket.addItem(itemB, 2);
+        shoppingBasket.addItem(itemC, 6);
+
+        //then
+        assertThat(shoppingBasket.totalPrice())
+                .as("should have a total price of 151.94$")
+                .isEqualTo(BigDecimal.valueOf(151.94));
+    }
 }
