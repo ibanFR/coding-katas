@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,7 +31,7 @@ class ShoppingBasketDiscountTest {
     // [X] - should qualify for 10% discount when total price is greater than 200$
     // [X] - total discount should be 0 when price without discount is less than 100$
     // [X] - total discount should be 5.05 when price without discount is 101$
-    // [] - total discount should be 20.01 when price without discount is less than 101$
+    // [] - total discount should be 20.1 when price without discount is 201$
     // [] - total price is 94.95$ when adding one Item with unit price 101$
     // [] - total price is 104,5$ when adding 11 times Item A with unit price 10$
     // [] - total price is 151.94$ when adding 5 times Item A with unit price 10$, 2 times Item B with unit price 25$ and 6 times Item C with unit price 9.99$
@@ -171,22 +174,28 @@ class ShoppingBasketDiscountTest {
                 .isEqualByComparingTo(BigDecimal.ZERO);
     }
 
-    @Test
-    @DisplayName("total discount should be 5.05 when price without discount is 101$")
-    void total_discount_should_be_505_when_price_without_discount_is_101$() {
+    @ParameterizedTest(name = "total discount should be {1} when price without discount is {0}$")
+    @MethodSource("argumentsForTotalDiscount")
+    @DisplayName("should calculate total discount")
+    void should_calculate_total_discount( int unitPrice, double totalDiscount) {
 
         //given
-        Item itemD = new Item(BigDecimal.valueOf(101));
+        Item anItem = new Item(BigDecimal.valueOf(unitPrice));
 
         //when
-        shoppingBasket.addItem(itemD, 1);
+        shoppingBasket.addItem(anItem, 1);
 
         //then
         assertThat(shoppingBasket.totalDiscount())
-                .as("total discount should be 5.05$")
-                .isEqualByComparingTo(BigDecimal.valueOf(5.05));
+                .isEqualByComparingTo(BigDecimal.valueOf(totalDiscount));
     }
 
+    public static Stream<Arguments> argumentsForTotalDiscount() {
+        return Stream.of(
+                Arguments.of(101, 5.05),
+                Arguments.of(201, 20.1)
+        );
+    }
 
     @Test
     @Disabled("WIP")
