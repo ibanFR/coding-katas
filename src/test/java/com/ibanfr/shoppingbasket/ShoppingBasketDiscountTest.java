@@ -32,8 +32,7 @@ class ShoppingBasketDiscountTest {
     // [X] - total discount should be 0 when price without discount is less than 100$
     // [X] - total discount should be 5.05 when price without discount is 101$
     // [] - total discount should be 20.1 when price without discount is 201$
-    // [] - total price is 94.95$ when adding one Item with unit price 101$
-    // [] - total price is 104,5$ when adding 11 times Item A with unit price 10$
+    // [X] - total price is 104,5$ when adding 11 times Item A with unit price 10$
     // [] - total price is 151.94$ when adding 5 times Item A with unit price 10$, 2 times Item B with unit price 25$ and 6 times Item C with unit price 9.99$
 
     @BeforeEach
@@ -198,7 +197,6 @@ class ShoppingBasketDiscountTest {
     }
 
     @Test
-    @Disabled("WIP")
     @DisplayName("total price is 104,5$ when adding 11 times Item A")
     void total_price_is_1045_when_adding_11_times_Item_A() {
 
