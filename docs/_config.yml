@@ -96,6 +96,9 @@ collections:
   learning:
     output: true
     permalink: /:collection/:path/
+  katas:
+    output: true
+    permalink: /:collection/:path/
 
 defaults:
   # _posts
@@ -126,6 +129,14 @@ defaults:
       layout: single
       sidebar:
         nav: "learning"
+  # _katas
+  - scope:
+      path: "_katas"
+      type: katas
+    values:
+      layout: single
+      sidebar:
+        nav: "katas"
 
 category_archive:
   type: liquid

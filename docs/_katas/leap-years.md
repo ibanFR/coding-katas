@@ -1,5 +1,4 @@
 ---
-permalink: /small-steps/leap-years/
 title: "Leap Years"
 ---
 Write a function that returns true or false depending on whether its input integer is a leap year or not.

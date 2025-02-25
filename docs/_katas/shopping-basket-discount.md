@@ -1,5 +1,4 @@
 ---
-permalink: /small-steps/shopping-basket-discount/
 title: "Shopping Basket Discount"
 ---
 

@@ -2,21 +2,22 @@ main:
   - title: "Learning Hours"
     url: /learning/learning-hours/
   - title: "Katas"
-    url: /katas/
+    url: /katas/katas/
   - title: "About"
     url: /about/
 
 katas:
-  - title: Small Steps
+  - title: Katas
     children:
-      - title: "Leap Years"
-        url: /small-steps/leap-years/
-      - title: "Lift Button"
-        url: /small-steps/lift-button/
-      - title: "Shopping Basket Discount"
-        url: /small-steps/shopping-basket-discount/
+    - title: "Leap Years"
+      url: /katas/leap-years/
+    - title: "Lift Button"
+      url: /katas/lift-button/
+    - title: "Shopping Basket Discount"
+      url: /katas/shopping-basket-discount/
 
 learning:
   - title: Small Steps
     children:
-      - title: "Shopping Basket Discount"
+      - title: "Design in the Red Step"
+        url: /learning/small_steps/design-in-red/

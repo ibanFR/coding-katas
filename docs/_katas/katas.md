@@ -1,5 +1,4 @@
 ---
-permalink: /katas/
 title: "Katas"
 ---
 

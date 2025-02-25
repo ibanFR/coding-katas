@@ -1,5 +1,4 @@
 ---
-permalink: /small-steps/lift-button/
 title: "Lift Button"
 ---
 Write the brains of a lift button. When you press the button, the light comes on. When the lift arrives and the doors
