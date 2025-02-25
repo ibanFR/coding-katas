@@ -3,7 +3,8 @@ permalink: /small-steps/shopping-basket-discount/
 title: "Shopping Basket Discount"
 ---
 
-![Shopping Basket Discount](/assets/images/shopping-basket.webp)
+{% include figure popup=true image_path="/assets/images/shopping-basket.webp" alt="shopping basket" %}
+
 
 Items in a shopping basket have a unit price and quantity. Write code that will allow you to:
 
