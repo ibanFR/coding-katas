@@ -91,6 +91,11 @@ footer:
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/Iban_FR"
 
+# Collections
+collections:
+  learning:
+    output: true
+    permalink: /:collection/:path/
 
 defaults:
   # _posts
@@ -113,6 +118,14 @@ defaults:
       author_profile: false
       sidebar:
         nav: "katas"
+  # _learning
+  - scope:
+      path: "_learning"
+      type: learning
+    values:
+      layout: single
+      sidebar:
+        nav: "learning"
 
 category_archive:
   type: liquid
@@ -120,3 +133,4 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
