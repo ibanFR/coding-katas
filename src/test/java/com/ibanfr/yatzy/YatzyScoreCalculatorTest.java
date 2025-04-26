@@ -12,8 +12,7 @@ class YatzyScoreCalculatorTest {
     YatzyScoreCalculator calculator;
 
     // TEST LIST: Your task is to score a GIVEN roll in a GIVEN category.
-    // [] = a roll must be a 5 dice array
-    // [] = a dice must be a number between 1 and 6
+
     // Chances Category
     // - The player scores the sum of all dice.
     //[X] - A roll of 1,1,3,3,6 in the should score 14
@@ -28,8 +27,8 @@ class YatzyScoreCalculatorTest {
         void should_score_the_sum_of_all_dice() {
 
             //given
-            int[] roll = {1, 1, 3, 3, 6};
             int expectedScore = 14;
+            Roll roll = new Roll(1, 1, 3, 3, 6);
 
             //when
             int score = YatzyScoreCalculator.scoreRoll(roll, YatzyCategory.CHANCES);

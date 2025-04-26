@@ -8,8 +8,8 @@ public class YatzyScoreCalculator {
         // Prevent instantiation
     }
 
-    public static int scoreRoll(int[] roll, YatzyCategory category) {
-        return Arrays.stream(roll)
+    public static int scoreRoll(Roll roll, YatzyCategory category) {
+        return Arrays.stream(roll.dice())
                 .reduce(0, Integer::sum);
     }
 }
