@@ -2,7 +2,11 @@ package com.ibanfr.yatzy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,19 +20,24 @@ class YatzyScoreCalculatorTest {
     // Chances Category
     // - The player scores the sum of all dice.
     //[X] - A roll of 1,1,3,3,6 in the should score 14
-    //[] - A roll of 4,5,5,6,1 in the should score 21
+    //[X] - A roll of 4,5,5,6,1 in the should score 21
 
     @Nested
     @DisplayName("Chances Category")
     class Chances_Category {
 
-        @Test
+        public static Stream<Arguments> provideChancesCategoryTestData() {
+            return Stream.of(Arguments.of(new int[]{1, 1, 3, 3, 6}, 14),
+                             Arguments.of(new int[]{4, 5, 5, 6, 1}, 21));
+        }
+
+        @ParameterizedTest
+        @MethodSource("provideChancesCategoryTestData")
         @DisplayName("should score the sum of all dice")
-        void should_score_the_sum_of_all_dice() {
+        void should_score_the_sum_of_all_dice(int[] dice, int expectedScore) {
 
             //given
-            int expectedScore = 14;
-            Roll roll = new Roll(1, 1, 3, 3, 6);
+            Roll roll = new Roll(dice);
 
             //when
             int score = YatzyScoreCalculator.scoreRoll(roll, YatzyCategory.CHANCES);
