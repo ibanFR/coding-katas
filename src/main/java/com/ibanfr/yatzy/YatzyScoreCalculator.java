@@ -9,6 +9,25 @@ public class YatzyScoreCalculator {
     }
 
     public static int scoreRoll(Roll roll, YatzyCategory category) {
+
+        if (category == YatzyCategory.CHANCES) {
+            return scoreChances(roll);
+        } else {
+            return scoreYatzy(roll);
+        }
+
+    }
+
+    private static int scoreYatzy(Roll roll) {
+        return areAllDiceEqual(roll)?50:0;
+    }
+
+    private static boolean areAllDiceEqual(Roll roll) {
+        return Arrays.stream(roll.dice())
+                .allMatch(value -> value == roll.dice()[0]);
+    }
+
+    private static int scoreChances(Roll roll) {
         return Arrays.stream(roll.dice())
                 .reduce(0, Integer::sum);
     }

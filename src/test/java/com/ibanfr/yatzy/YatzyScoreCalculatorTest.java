@@ -2,6 +2,7 @@ package com.ibanfr.yatzy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,13 +18,7 @@ class YatzyScoreCalculatorTest {
 
     // TEST LIST: Your task is to score a GIVEN roll in a GIVEN category.
 
-    // Chances Category
-    // - The player scores the sum of all dice.
-    //[X] - A roll of 1,1,3,3,6 in the should score 14
-    //[X] - A roll of 4,5,5,6,1 in the should score 21
-
     @Nested
-    @DisplayName("Chances Category")
     class Chances_Category {
 
         public static Stream<Arguments> provideChancesCategoryTestData() {
@@ -44,18 +39,55 @@ class YatzyScoreCalculatorTest {
 
             //then
             assertThat(score)
-                    .as("sum should be %d", expectedScore)
+                    .as("score should be %d", expectedScore)
                     .isEqualTo(expectedScore);
         }
 
 
     }
 
-    // Yatzy Category
-    // - If all dice have the same number, the player scores 50 points.
-    //[] - A roll of 1,1,1,1,1 in the should score 50
-    //[] - A roll of 2,2,2,2,2 in the should score 50
-    //[] - A roll of 1,2,3,4,5 in the should score 0
+    @Nested
+    class Yatzy_Category {
+
+        // should score 50 if all dice have the same number
+        @Test
+        void should_score_50_if_all_dice_have_the_same_number() {
+            //given
+            Roll roll = new Roll(1,1,1,1,1);
+            int expectedScore= 50;
+
+            //when
+            int score = YatzyScoreCalculator.scoreRoll(roll, YatzyCategory.YATZY);
+
+            //then
+            assertThat(score)
+                    .as("score should be %d", expectedScore)
+                    .isEqualTo(expectedScore);
+
+        }
+
+
+        @Test
+        void should_score_0_if_all_dice_do_not_have_the_same_number() {
+            //given
+            Roll roll = new Roll(1,1,1,1,2);
+            int expectedScore= 0;
+
+            //when
+            int score = YatzyScoreCalculator.scoreRoll(roll, YatzyCategory.YATZY);
+
+            //then
+            assertThat(score)
+                    .as("score should be %d", expectedScore)
+                    .isEqualTo(expectedScore);
+
+        }
+
+
+
+    }
+
+
     //Ones, Twos, Threes, Fours, Fives, Sixes Category
     // - The player scores the sum of the dice that show the given number.
     //[] - A roll of 3,3,3,4,5 in the "Ones" should score 0
