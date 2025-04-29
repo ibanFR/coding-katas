@@ -12,8 +12,10 @@ public class YatzyScoreCalculator {
 
         if (category == YatzyCategory.CHANCES) {
             return scoreChances(roll);
-        } else {
+        } else if (category == YatzyCategory.YATZY) {
             return scoreYatzy(roll);
+        }else{
+            throw new IllegalArgumentException("Unknown category: " + category);
         }
 
     }
