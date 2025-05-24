@@ -23,4 +23,8 @@ public class DiamondPrinter {
 
         return ".".repeat(padding) + letter;
     }
+
+    public static String addRightPaddingToString(String string, int padding) {
+        return string;
+    }
 }
