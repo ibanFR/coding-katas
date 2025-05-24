@@ -30,13 +30,17 @@ Your diamond must contain spaces where there are dots.
 
 TEST LIST
 ---------
-[] - Print diamond for 'A'
+[X] - Print diamond for 'A'
 A
 
-[] - Find letter position in alphabet
+[X] - Find letter position in alphabet
 - A = 0
 - B = 1
 - C = 2
+
+[] - print line '1' when letter is 'A' => "A"
+[] - print line '1' when letter is 'B' => ".A."
+[] - print line '1' when letter is 'C' => "..A.."
 
 [] - Add left spaces to line '1' when letter is 'A'
 - 0

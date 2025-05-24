@@ -2,16 +2,20 @@ package com.ibanfr.printdiamond;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PrintDiamondTest {
 
     //TEST LIST
     // [X] - Print diamond for 'A'
-    // [] - Find letter position for 'A'
-    // [] - Find letter position for 'B'
-    // [] - Find letter position for 'C'
+    // [X] - Find letter position for 'A' should return 0
+    // [X] - Find letter position for 'B' should return 1
+    // [X] - Find letter position for 'C' should return 2
+    // [X] - find letter position for 'AA' should return an exception
 
     @Test
     @DisplayName("should print diamond for letter A")
@@ -26,4 +30,50 @@ class PrintDiamondTest {
         //then
         assertThat(result).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "A, 0",
+        "B, 1",
+        "C, 2"
+    })
+    @DisplayName("Find letter position for 'A' should return 0")
+    void Find_letter_position_for_A_should_return_0(String letter, int expectedPosition) {
+
+        //when
+        int position = DiamondPrinter.findLetterPosition(letter);
+
+        //then
+        assertThat(position).isEqualTo(expectedPosition);
+    }
+
+    @Test
+    @DisplayName("find letter position should only accept one letter")
+    void find_letter_position_should_only_accept_one_letter() {
+
+        //then
+        assertThatThrownBy(() -> DiamondPrinter.findLetterPosition("AA"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Input must be one letter");
+    }
+
+    @Test
+    @DisplayName("should add 0 left padding for letter A")
+    void should_add_0_left_padding_for_letter_A() {
+
+        //when
+        String result = DiamondPrinter.addLeftPaddingForLetter("A", 0);
+
+        //then
+        assertThat(result).isEqualTo("A");
+    }
+
+    //[] - should add '0' left padding for letter 'A' => "A"
+    //[] - should add '1' left padding for letter 'A' => ".A"
+    //[] - should add '2' left padding for letter 'A' => "..A"
+
+    //[] - print line '1' when letter is 'A' => "A"
+    //[] - print line '1' when letter is 'B' => ".A."
+    //[] - print line '1' when letter is 'C' => "..A.."
+
 }
