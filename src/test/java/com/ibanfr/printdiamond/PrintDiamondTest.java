@@ -77,9 +77,9 @@ class PrintDiamondTest {
     @ParameterizedTest(name = "should add {1} left padding for letter {0} => {2}")
     @CsvSource({
             "A, 0, A",
-            //".A, 1, .A.",
-            //"..A, 2, ..A..",
-            //"...A, 3, ...A..."
+            ".A, 1, .A.",
+            "..A, 2, ..A..",
+            "...A, 3, ...A..."
     })
     void should_add_right_padding_to_String(String string, int padding, String expectedResult) {
 
@@ -89,9 +89,6 @@ class PrintDiamondTest {
         //then
         assertThat(result).isEqualTo(expectedResult);
     }
-    //[] - should add '0' right padding for string 'A' => "A"
-    //[] - should add '1' right padding for string '.A' => ".A."
-    //[] - should add '2' right padding for string '..A' => "..A.."
 
     //[] - print line '1' when letter is 'A' => "A"
     //[] - print line '1' when letter is 'B' => ".A."
