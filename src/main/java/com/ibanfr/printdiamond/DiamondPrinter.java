@@ -20,6 +20,7 @@ public class DiamondPrinter {
     }
 
     public static String addLeftPaddingForLetter(String letter, int padding) {
-        return letter;
+
+        return ".".repeat(padding) + letter;
     }
 }

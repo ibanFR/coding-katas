@@ -33,9 +33,9 @@ class PrintDiamondTest {
 
     @ParameterizedTest
     @CsvSource({
-        "A, 0",
-        "B, 1",
-        "C, 2"
+            "A, 0",
+            "B, 1",
+            "C, 2"
     })
     @DisplayName("Find letter position for 'A' should return 0")
     void Find_letter_position_for_A_should_return_0(String letter, int expectedPosition) {
@@ -53,19 +53,24 @@ class PrintDiamondTest {
 
         //then
         assertThatThrownBy(() -> DiamondPrinter.findLetterPosition("AA"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("Input must be one letter");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Input must be one letter");
     }
 
-    @Test
-    @DisplayName("should add 0 left padding for letter A")
-    void should_add_0_left_padding_for_letter_A() {
+    @ParameterizedTest(name = "should add {1} left padding for letter {0} => {2}")
+    @CsvSource({
+            "A, 0, A",
+            "A, 1, .A",
+            "A, 2, ..A",
+            "A, 3, ...A"
+    })
+    void should_add_0_left_padding_for_letter_A(String letter, int padding, String expectedResult) {
 
         //when
-        String result = DiamondPrinter.addLeftPaddingForLetter("A", 0);
+        String result = DiamondPrinter.addLeftPaddingForLetter(letter, padding);
 
         //then
-        assertThat(result).isEqualTo("A");
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     //[] - should add '0' left padding for letter 'A' => "A"
