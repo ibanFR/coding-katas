@@ -31,14 +31,13 @@ class PrintDiamondTest {
         assertThat(result).isEqualTo(expected);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Find letter position for {0} should return {1}")
     @CsvSource({
             "A, 0",
             "B, 1",
             "C, 2"
     })
-    @DisplayName("Find letter position for 'A' should return 0")
-    void Find_letter_position_for_A_should_return_0(String letter, int expectedPosition) {
+    void should_find_letter_position_in_alphabet_for_given_letter(String letter, int expectedPosition) {
 
         //when
         int position = DiamondPrinter.findLetterPosition(letter);
