@@ -89,6 +89,22 @@ class PrintDiamondTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest(name = "line {0} for letter {1} should return {2}")
+    @CsvSource({
+            "1, A, A",
+            "1, B, .A.",
+            "1, C, ..A..",
+            //"...A, 3, ...A..."
+    })
+    void should_print_given_diamond_line_for_given_letter(int lineNumber, String letter, String expectedResult) {
+
+        //when
+        String result = DiamondPrinter.printLineForLetter(lineNumber, letter);
+
+        //then
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
     //[] - print line '1' when letter is 'A' => "A"
     //[] - print line '1' when letter is 'B' => ".A."
     //[] - print line '1' when letter is 'C' => "..A.."

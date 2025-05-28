@@ -27,4 +27,14 @@ public class DiamondPrinter {
     public static String addRightPaddingToString(String string, int padding) {
         return string + ".".repeat(padding);
     }
+
+    public static String printLineForLetter(int lineNumber, String letter) {
+
+        String result = addLeftPaddingForLetter(getLetterForLine(lineNumber), findLetterPosition(letter));
+        return addRightPaddingToString(result, findLetterPosition(letter));
+    }
+
+    private static String getLetterForLine(int lineNumber) {
+        return LETTERS.get(lineNumber - 1);
+    }
 }
