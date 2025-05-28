@@ -74,7 +74,7 @@ class PrintDiamondTest {
     }
 
 
-    @ParameterizedTest(name = "should add {1} left padding for letter {0} => {2}")
+    @ParameterizedTest(name = "should add {1} right padding to string {0} => {2}")
     @CsvSource({
             "A, 0, A",
             ".A, 1, .A.",
