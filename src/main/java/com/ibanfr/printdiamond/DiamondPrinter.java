@@ -4,10 +4,14 @@ import java.util.List;
 
 public class DiamondPrinter {
 
+    private DiamondPrinter() {
+        // Prevent instantiation
+    }
+
     public static final List<String> LETTERS = List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
 
     public static String print(String letter) {
-        return "A";
+        return printLineForLetter(1,letter);
     }
 
     public static int findLetterPosition(String letter) {

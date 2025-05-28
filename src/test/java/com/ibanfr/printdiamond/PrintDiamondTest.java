@@ -10,13 +10,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PrintDiamondTest {
 
-    //TEST LIST
-    // [X] - Print diamond for 'A'
-    // [X] - Find letter position for 'A' should return 0
-    // [X] - Find letter position for 'B' should return 1
-    // [X] - Find letter position for 'C' should return 2
-    // [X] - find letter position for 'AA' should return an exception
-
     @Test
     @DisplayName("should print diamond for letter A")
     void should_print_diamond_for_letter_A() {
@@ -104,9 +97,5 @@ class PrintDiamondTest {
         //then
         assertThat(result).isEqualTo(expectedResult);
     }
-
-    //[] - print line '1' when letter is 'A' => "A"
-    //[] - print line '1' when letter is 'B' => ".A."
-    //[] - print line '1' when letter is 'C' => "..A.."
 
 }
