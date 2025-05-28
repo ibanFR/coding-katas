@@ -10,6 +10,8 @@ public class YatzyScoreCalculator {
 
     public static int scoreRoll(Roll roll, YatzyCategory category) {
 
+        ScoreCalculator calculator = ScoreCalculatorFactory.getScoreCalculator(category);
+
         if (category == YatzyCategory.CHANCES) {
             return scoreChances(roll);
         } else if (category == YatzyCategory.YATZY) {
