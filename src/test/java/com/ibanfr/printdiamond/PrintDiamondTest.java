@@ -87,7 +87,6 @@ class PrintDiamondTest {
             "1, A, A",
             "1, B, .A.",
             "1, C, ..A..",
-            //"...A, 3, ...A..."
     })
     void should_print_given_diamond_line_for_given_letter(int lineNumber, String letter, String expectedResult) {
 
@@ -98,4 +97,19 @@ class PrintDiamondTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest(name = "middle padding for line {0} should return {1}")
+    @CsvSource({
+            "2, .",
+            "3, ...",
+            "4, .....",
+            "5, .......",
+
+    })
+    void should_add_middle_padding(int lineNumber, String expected) {
+
+        String result = DiamondPrinter.middlePaddingForLine(lineNumber);
+
+        //then
+        assertThat(result).isEqualTo(expected);
+    }
 }

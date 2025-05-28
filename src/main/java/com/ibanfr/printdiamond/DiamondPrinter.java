@@ -34,11 +34,26 @@ public class DiamondPrinter {
 
     public static String printLineForLetter(int lineNumber, String letter) {
 
-        String result = addLeftPaddingForLetter(getLetterForLine(lineNumber), findLetterPosition(letter));
-        return addRightPaddingToString(result, findLetterPosition(letter));
+        String letterForLine = getLetterForLine(lineNumber);
+        int letterPosition = findLetterPosition(letter);
+
+        String result = addLeftPaddingForLetter(letterForLine, letterPosition);
+        return addRightPaddingToString(result, letterPosition);
     }
 
     private static String getLetterForLine(int lineNumber) {
         return LETTERS.get(lineNumber - 1);
+    }
+
+    public static String middlePaddingForLine(int lineNumber) {
+
+        if (lineNumber == 1) {
+            return "";
+        }else if (lineNumber == 2) {
+            return ".";
+        }else {
+            return middlePaddingForLine(lineNumber - 1) + "..";
+        }
+
     }
 }

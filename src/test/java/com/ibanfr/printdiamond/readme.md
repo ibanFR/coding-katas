@@ -28,19 +28,7 @@ A
 Note: These examples use dots in place of spaces only for readability.
 Your diamond must contain spaces where there are dots.
 
-TEST LIST
----------
-[X] - Print diamond for 'A'
-A
 
-[X] - Find letter position in alphabet
-- A = 0
-- B = 1
-- C = 2
-
-[] - print line '1' when letter is 'A' => "A"
-[] - print line '1' when letter is 'B' => ".A."
-[] - print line '1' when letter is 'C' => "..A.."
 
 [] - Add left spaces to line '1' when letter is 'A'
 - 0
@@ -59,3 +47,47 @@ C...C
 ..A..
 
 
+rule for middle padding?
+Print diamond for 'A' => letter position 1
+A
+
+Print diamond for 'B' => letter position 2
+.A.
+B.B
+.A.
+
+Print diamond for 'C' => letter position 3
+..A..
+.B.B.
+C...C
+.B.B.
+..A..
+
+Print diamond for 'D'
+...A...
+..B.B..
+.C...C.
+D.....D
+.C...C.
+..B.B..
+...A...
+
+print diamond for 'E'.
+
+....A....
+...B.B...
+..C...C..
+.D.....D.
+E.......E
+.D.....D.
+..C...C..
+...B.B...
+....A....
+
+print diamond for 'F'.
+.....A.....
+....B.B....
+...C...C...
+..D.....D..
+.E.......E.
+F.........F
