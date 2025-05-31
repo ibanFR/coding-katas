@@ -23,29 +23,25 @@ public class DiamondPrinter {
         return LETTERS.indexOf(letter);
     }
 
-    public static String addLeftPaddingForLetter(String letter, int padding) {
 
-        return ".".repeat(padding) + letter;
-    }
+    public static String paddingForLineAndLetter(int line, String letter) {
 
-    public static String addRightPaddingToString(String string, int padding) {
-        return string + ".".repeat(padding);
+        if (line == 1) {
+            return ".".repeat(findLetterPosition(letter));
+        }else{
+            return paddingForLineAndLetter(line - 1, letter).substring(1);
+        }
     }
 
     public static String printLineForLetter(int lineNumber, String letter) {
 
         String letterForLine = getLetterForLine(lineNumber);
-        int letterPosition = findLetterPosition(letter);
+        String padding = paddingForLineAndLetter(lineNumber, letter);
 
-        if(lineNumber == 1) {
-            String result = addLeftPaddingForLetter(letterForLine, letterPosition);
-            return addRightPaddingToString(result, letterPosition);
-        }else if (lineNumber <= letterPosition){
-            String result = addLeftPaddingForLetter(letterForLine, letterPosition - 1);
-            result = result + middlePaddingForLine(lineNumber)+ letterForLine;
-            return addRightPaddingToString(result, letterPosition - 1);
-        }else{
-            return letterForLine + middlePaddingForLine(lineNumber) + letterForLine;
+        if (lineNumber == 1) {
+            return padding + letterForLine + padding;
+        }else {
+            return padding + letterForLine + middlePaddingForLine(lineNumber) + letterForLine + padding;
         }
 
     }
