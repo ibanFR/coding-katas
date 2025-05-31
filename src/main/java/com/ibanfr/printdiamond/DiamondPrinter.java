@@ -37,8 +37,17 @@ public class DiamondPrinter {
         String letterForLine = getLetterForLine(lineNumber);
         int letterPosition = findLetterPosition(letter);
 
-        String result = addLeftPaddingForLetter(letterForLine, letterPosition);
-        return addRightPaddingToString(result, letterPosition);
+        if(lineNumber == 1) {
+            String result = addLeftPaddingForLetter(letterForLine, letterPosition);
+            return addRightPaddingToString(result, letterPosition);
+        }else if (lineNumber <= letterPosition){
+            String result = addLeftPaddingForLetter(letterForLine, letterPosition - 1);
+            result = result + middlePaddingForLine(lineNumber)+ letterForLine;
+            return addRightPaddingToString(result, letterPosition - 1);
+        }else{
+            return letterForLine + middlePaddingForLine(lineNumber) + letterForLine;
+        }
+
     }
 
     private static String getLetterForLine(int lineNumber) {
