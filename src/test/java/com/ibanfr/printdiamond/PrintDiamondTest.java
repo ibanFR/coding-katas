@@ -53,16 +53,18 @@ class PrintDiamondTest {
 
     @ParameterizedTest(name = "left padding for line {0} when letter is {1} => {2}")
     @CsvSource({
-            "1, A, \"\"",
+            "1, A, ''",
             "1, B, .",
             "1, C, ..",
-            "1, D, ..."
+            "1, D, ...",
+            "2, B, ''",
+            "2, C, .",
+            "2, D, ..",
     })
-    @Disabled("WIP")
-    void should_get_left_padding_for_line_when_letter_is(int padding, String letter, String expectedResult) {
+    void should_get_left_padding_for_line_when_letter_is(int line, String letter, String expectedResult) {
 
         //when
-        String result = DiamondPrinter.addLeftPaddingForLetter(letter, padding);
+        String result = DiamondPrinter.leftPaddingForLineAndLetter(line, letter);
 
         //then
         assertThat(result).isEqualTo(expectedResult);

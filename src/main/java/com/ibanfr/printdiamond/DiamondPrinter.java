@@ -28,6 +28,15 @@ public class DiamondPrinter {
         return ".".repeat(padding) + letter;
     }
 
+    public static String leftPaddingForLineAndLetter(int line, String letter) {
+
+        if (line == 1) {
+            return ".".repeat(findLetterPosition(letter));
+        }else{
+            return leftPaddingForLineAndLetter(line - 1, letter).substring(1);
+        }
+    }
+
     public static String addRightPaddingToString(String string, int padding) {
         return string + ".".repeat(padding);
     }
