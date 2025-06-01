@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -218,5 +219,38 @@ class VendingMachineTest {
 
 
     }
+
+    @Nested
+    @DisplayName("Add products")
+    class Add_products {
+
+        //TEST LIST
+        // add products [cola, chips, candy] should add products to the vending machine
+
+        @Test
+        @DisplayName("add products [cola, chips, candy] should add products to the vending machine")
+        void add_products_cola_chips_candy_should_add_products_to_the_vending_machine() {
+
+            //test fixture
+            List<Product> productList = List.of(
+                    new Product(1, "cola", BigDecimal.valueOf(1.00)),
+                    new Product(2, "chips", BigDecimal.valueOf(0.50)),
+                    new Product(3, "candy", BigDecimal.valueOf(0.65))
+            );
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //when
+            vendingMachine.addProducts(productList);
+
+            //then
+            assertThat(vendingMachine.listProducts())
+                    .containsAll(productList);
+        }
+
+
+    }
+
 
 }

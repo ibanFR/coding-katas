@@ -1,17 +1,22 @@
 package com.ibanfr.vendingmachine;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class VendingMachine {
 
     Display display;
     private BigDecimal currentAmount;
     private BigDecimal returnAmount;
+    private List<Product> products;
 
     public VendingMachine(Display display) {
         this.display = display;
         this.currentAmount = BigDecimal.ZERO;
         this.display.printMessage("INSERT COIN");
+        this.products = new ArrayList<>();
     }
 
     public String display() {
@@ -43,5 +48,13 @@ public class VendingMachine {
         this.returnAmount = currentAmount;
         this.currentAmount = BigDecimal.ZERO;
         display.printMessage("INSERT COIN");
+    }
+
+    public List<Product> listProducts() {
+        return Collections.unmodifiableList(products);
+    }
+
+    public void addProducts(List<Product> productList) {
+        this.products.addAll(productList);
     }
 }
