@@ -13,8 +13,9 @@ class PrintDiamondTest {
     @ParameterizedTest(name = "print diamond for letter {0} should return {1}")
     @CsvSource({
             "A, A",
-            "B, '.A.\nB.B'",
-            "C, '..A..\n.B.B.\nC...C'",
+            "B, '.A.\nB.B\n.A.'",
+            "C, '..A..\n.B.B.\nC...C\n.B.B.\n..A..'",
+            "D, '...A...\n..B.B..\n.C...C.\nD.....D\n.C...C.\n..B.B..\n...A...'",
     })
     void should_print_diamond_for_letter_A(String letter, String expected) {
 

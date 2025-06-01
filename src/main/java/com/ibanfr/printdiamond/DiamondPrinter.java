@@ -12,10 +12,15 @@ public class DiamondPrinter {
 
     public static String print(String letter) {
 
-        String diamond = "";
+        StringBuilder diamond = new StringBuilder();
         int letterPosition = findLetterPosition(letter);
         for (int index = 1; index <= letterPosition+1; index++) {
-            diamond += printLineForLetter(index, letter) + "\n";
+            diamond.append(printLineForLetter(index, letter))
+                    .append("\n");
+        }
+        for (int index = letterPosition; index >= 1; index--) {
+            diamond.append(printLineForLetter(index, letter))
+                    .append("\n");
         }
         return diamond.substring(0, diamond.length() - 1); // Remove the last newline character
     }
