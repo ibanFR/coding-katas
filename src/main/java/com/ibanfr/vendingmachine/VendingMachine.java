@@ -1,6 +1,7 @@
 package com.ibanfr.vendingmachine;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,7 @@ public class VendingMachine {
     Display display;
     private BigDecimal currentAmount;
     private BigDecimal returnAmount;
-    private List<Product> products;
+    private final List<Product> products;
 
     public VendingMachine(Display display) {
         this.display = display;
@@ -33,7 +34,14 @@ public class VendingMachine {
             return;
         }
         this.currentAmount = currentAmount.add(coin.getValue());
-        display.printMessage("$"+String.format("%.2f", currentAmount));
+        display.printMessage(currentAmountOrInsertCoin());
+    }
+
+    private String currentAmountOrInsertCoin() {
+        if (currentAmount.compareTo(BigDecimal.ZERO) == 0) {
+            return "INSERT COIN";
+        }
+        return "$" + String.format("%.2f", currentAmount);
     }
 
     private void returnAmount(BigDecimal returnAmount){
@@ -56,5 +64,41 @@ public class VendingMachine {
 
     public void addProducts(List<Product> productList) {
         this.products.addAll(productList);
+    }
+
+    public void selectProduct(int productNumber) {
+
+        if(sufficientAmountForProduct(productNumber)) {
+            dispenseProduct(productNumber);
+        } else {
+            display.printMessage("PRICE: $" + String.format("%.2f", getProductPrice(productNumber)));
+            display.printMessageAfterDelay(currentAmountOrInsertCoin(), Duration.ofSeconds(5));
+        }
+    }
+
+    private BigDecimal getProductPrice(int productNumber) {
+        return products.stream()
+                .filter(product -> product.productNumber() == productNumber)
+                .findFirst()
+                .map(Product::value)
+                .orElse(BigDecimal.ZERO);
+    }
+
+    boolean sufficientAmountForProduct(int productNumber) {
+        return products.stream()
+                .filter(product -> product.productNumber() == productNumber)
+                .findFirst()
+                .map(product -> currentAmount.compareTo(product.value()) >= 0)
+                .orElse(false);
+    }
+
+    private void dispenseProduct(int productNumber) {
+        this.currentAmount = BigDecimal.ZERO;
+        products.stream()
+                .filter(product -> product.productNumber() == productNumber)
+                .findFirst()
+                .ifPresent(product -> product.reduceQuantity(1));
+        display.printMessage("THANK YOU");
+        display.printMessageAfterDelay("INSERT COIN", Duration.ofSeconds(5));
     }
 }

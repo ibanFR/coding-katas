@@ -1,13 +1,13 @@
 package com.ibanfr.vendingmachine;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
 class VendingMachineTest {
 
@@ -233,9 +233,9 @@ class VendingMachineTest {
 
             //test fixture
             List<Product> productList = List.of(
-                    new Product(1, "cola", BigDecimal.valueOf(1.00)),
-                    new Product(2, "chips", BigDecimal.valueOf(0.50)),
-                    new Product(3, "candy", BigDecimal.valueOf(0.65))
+                    new Product(1, 10, "cola", BigDecimal.valueOf(1.00)),
+                    new Product(2, 10,"chips", BigDecimal.valueOf(0.50)),
+                    new Product(3, 10,"candy", BigDecimal.valueOf(0.65))
             );
 
             //given
@@ -247,6 +247,158 @@ class VendingMachineTest {
             //then
             assertThat(vendingMachine.listProducts())
                     .containsAll(productList);
+        }
+
+
+    }
+
+    @Nested
+    @DisplayName("Select a product when sufficient amount is inserted")
+    class Select_a_product_sufficient_amount_is_inserted {
+
+        @BeforeEach
+        void setUp() {
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 1, "chips", BigDecimal.valueOf(0.50))
+            ));
+
+            //given insert $0.50
+            vendingMachine.insertCoin(Coin.QUARTER);
+            vendingMachine.insertCoin(Coin.QUARTER);
+
+            //when
+            vendingMachine.selectProduct(1);
+        }
+
+        @Test
+        @DisplayName("should set current amount to 0.00")
+        void should_set_current_amount_to_000() {
+
+            //then
+            assertThat(vendingMachine.currentAmount()).isZero();
+        }
+
+        @Test
+        @DisplayName("should reduce product quantity one item")
+        void should_reduce_product_quantity_one_item() {
+
+            //then
+            assertThat(vendingMachine.listProducts())
+                    .filteredOn(product -> product.name().equals("chips"))
+                    .extracting(Product::quantity)
+                    .containsExactly(0);
+        }
+
+        @Test
+        @DisplayName("should display THANK YOU for 5 seconds, then INSERT COIN")
+        void should_display_THANK_YOU_for_5_seconds_then_INSERT_COIN(){
+
+            //then
+            assertThat(vendingMachine.display())
+                    .isEqualTo("THANK YOU");
+            //then
+            await().atLeast(Duration.ofSeconds(5))
+                    .until(() -> vendingMachine.display().equals("INSERT COIN"));
+        }
+    }
+
+    @Nested
+    @DisplayName("Select a product when NOT sufficient amount")
+    class Select_a_product_when_NOT_sufficient_amount {
+
+        @Test
+        @DisplayName("should display PRICE of the selected item")
+        void should_display_PRICE_of_the_selected_item() {
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 1, "chips", BigDecimal.valueOf(0.50))
+            ));
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            assertThat(vendingMachine.display())
+                    .isEqualTo("PRICE $0.50");
+            //then
+            await().atLeast(Duration.ofSeconds(5))
+                    .until(() -> vendingMachine.display().equals("INSERT COIN"));
+        }
+
+        @Test
+        @DisplayName("when coins are inserted, should display current amount after 5 seconds")
+        void should_display_INSERT_COINS() {
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 1, "chips", BigDecimal.valueOf(0.50))
+            ));
+            //given insert $0.25
+            vendingMachine.insertCoin(Coin.QUARTER);
+
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            await().atLeast(Duration.ofSeconds(5))
+                    .until(() -> vendingMachine.display().equals("$0.25"));
+        }
+
+
+    }
+
+    @Nested
+    @DisplayName("Is Sufficient amount for product")
+    class Is_Sufficient_amount_for_product {
+
+        @BeforeEach
+        void setUp() {
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 1, "chips", BigDecimal.valueOf(0.50))
+            ));
+        }
+
+        @Test
+        @DisplayName("should return true when current amount is greater than or equal to product price")
+        void should_return_true_when_current_amount_is_greater_than_or_equal_to_product_price() {
+
+            //given insert $0.50
+            vendingMachine.insertCoin(Coin.QUARTER);
+            vendingMachine.insertCoin(Coin.QUARTER);
+
+            //when
+            boolean result = vendingMachine.sufficientAmountForProduct(1);
+
+            //then
+            assertThat(result).isTrue();
+        }
+
+        @Test
+        @DisplayName("should return false when current amount is less than product price")
+        void should_return_false_when_current_amount_is_less_than_product_price() {
+
+            //given insert $0.25
+            vendingMachine.insertCoin(Coin.QUARTER);
+
+            //when
+            boolean result = vendingMachine.sufficientAmountForProduct(1);
+
+            //then
+            assertThat(result).isFalse();
         }
 
 
