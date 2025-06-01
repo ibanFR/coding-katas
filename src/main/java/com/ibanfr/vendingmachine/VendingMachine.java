@@ -69,12 +69,25 @@ public class VendingMachine {
 
     public void selectProduct(int productNumber) {
 
+        if (productSoldOut(productNumber)) {
+            display.printMessage("SOLD OUT");
+            display.printMessageAfterDelay(currentAmountOrInsertCoin(), Duration.ofSeconds(5));
+            return;
+        }
         if(sufficientAmountForProduct(productNumber)) {
             dispenseProduct(productNumber);
         } else {
             display.printMessage("PRICE: $" + String.format("%.2f", getProductPrice(productNumber)));
             display.printMessageAfterDelay(currentAmountOrInsertCoin(), Duration.ofSeconds(5));
         }
+    }
+
+    private boolean productSoldOut(int productNumber) {
+        return products.stream()
+                .filter(product -> product.productNumber() == productNumber)
+                .findFirst()
+                .map(Product::quantity)
+                .orElse(0) < 1;
     }
 
     private BigDecimal getProductPrice(int productNumber) {

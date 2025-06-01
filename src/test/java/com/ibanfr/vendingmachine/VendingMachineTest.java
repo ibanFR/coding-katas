@@ -358,7 +358,7 @@ class VendingMachineTest {
     }
 
     @Nested
-    @DisplayName("Select a product return change")
+    @DisplayName("Return change")
     class Select_a_product_return_change {
 
         @Test
@@ -385,6 +385,60 @@ class VendingMachineTest {
             assertThat(vendingMachine.returnAmount()).isEqualTo(BigDecimal.valueOf(0.25));
         }
 
+
+    }
+
+    @Nested
+    @DisplayName("Product Out of stock")
+    class Product_Out_of_stock {
+
+        @BeforeEach
+        void setUp() {
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 0, "chips", BigDecimal.valueOf(0.50))
+            ));
+        }
+
+        @Test
+        @DisplayName("should display SOLD OUT when product is out of stock")
+        void should_display_SOLD_OUT_when_product_is_out_of_stock() {
+
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            assertThat(vendingMachine.display()).isEqualTo("SOLD OUT");
+        }
+
+        @Test
+        @DisplayName("when no money is inserted should display INSERT COIN after five seconds")
+        void when_no_money_is_inserted_should_display_INSERT_COIN_after_five_seconds() {
+
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            await().atLeast(Duration.ofSeconds(5))
+                    .until(() -> vendingMachine.display().equals("INSERT COIN"));
+        }
+
+        @Test
+        @DisplayName("when money is inserted should display current amount after five seconds")
+        void when_money_is_inserted_should_display_current_amount_after_five_seconds() {
+
+            //given
+            vendingMachine.insertCoin(Coin.QUARTER);
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            await().atLeast(Duration.ofSeconds(5))
+                    .until(() -> vendingMachine.display().equals("$0.25"));
+        }
 
     }
 
