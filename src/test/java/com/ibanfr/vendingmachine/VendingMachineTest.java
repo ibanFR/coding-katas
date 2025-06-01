@@ -15,7 +15,7 @@ class VendingMachineTest {
     void should_create_a_vending_machine_with_the_given_display() {
 
         //given
-        Display display = new FakeDisplay();
+        Display display = new LCDDisplay();
 
         //when
         vendingMachine = new VendingMachine(display);
@@ -25,8 +25,21 @@ class VendingMachineTest {
                 .isEqualTo(display);
     }
 
+    @Test
+    @DisplayName("should display INSERT COIN when there are no coins inserted")
+    void should_display_INSERT_COIN_when_there_are_no_coins_inserted() {
 
-// [] - should create a vending machine with the given Display
+        //given
+        Display display = new LCDDisplay();
+        //when
+        vendingMachine = new VendingMachine(display);
+
+        //then
+        assertThat(vendingMachine.display())
+                .isEqualTo("INSERT COIN");
+    }
+
+
 // [] - When there are no coins inserted => the machine displays INSERT COIN.
 // [] - When there are no coins inserted => current amount should be 0.00
 // [] - insert coin 1 nickel => the machine displays $0.05
