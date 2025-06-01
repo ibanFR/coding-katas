@@ -22,13 +22,12 @@ Rejected coins are placed in the coin return.
 
 TEST LIST: DISPLAY
 ---------
-- should create a vending machine with the given Display
-- When there are no coins inserted => the machine displays INSERT COIN.
-- When there are no coins inserted => current amount should be 0.00
-
-- insert coin 1 nickel => the machine displays $0.05
-- insert coin 1 dime => the machine displays $0.10
-- insert coin 1 penny => coin is rejected and placed in the coin return
+[] - should create a vending machine with the given Display
+[] - When there are no coins inserted => the machine displays INSERT COIN.
+[] - When there are no coins inserted => current amount should be 0.00
+[] - insert coin 1 nickel => the machine displays $0.05
+[] - insert coin 1 dime => the machine displays $0.10
+[] - insert coin 1 penny => coin is rejected and placed in the coin return
 
 ## Select Product
 
