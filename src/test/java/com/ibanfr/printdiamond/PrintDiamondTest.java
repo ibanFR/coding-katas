@@ -10,15 +10,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PrintDiamondTest {
 
-    @Test
-    @DisplayName("should print diamond for letter A")
-    void should_print_diamond_for_letter_A() {
-
-        //given
-        String expected = "A";
+    @ParameterizedTest(name = "print diamond for letter {0} should return {1}")
+    @CsvSource({
+            "A, A",
+            "B, '.A.\nB.B'",
+            "C, '..A..\n.B.B.\nC...C'",
+    })
+    void should_print_diamond_for_letter_A(String letter, String expected) {
 
         //when
-        String result = DiamondPrinter.print("A");
+        String result = DiamondPrinter.print(letter);
 
         //then
         assertThat(result).isEqualTo(expected);

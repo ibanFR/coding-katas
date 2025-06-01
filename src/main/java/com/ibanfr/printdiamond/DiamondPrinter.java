@@ -11,7 +11,13 @@ public class DiamondPrinter {
     public static final List<String> LETTERS = List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
 
     public static String print(String letter) {
-        return printLineForLetter(1,letter);
+
+        String diamond = "";
+        int letterPosition = findLetterPosition(letter);
+        for (int index = 1; index <= letterPosition+1; index++) {
+            diamond += printLineForLetter(index, letter) + "\n";
+        }
+        return diamond.substring(0, diamond.length() - 1); // Remove the last newline character
     }
 
     public static int findLetterPosition(String letter) {
