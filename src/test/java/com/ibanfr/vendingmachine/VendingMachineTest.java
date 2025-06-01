@@ -1,6 +1,5 @@
 package com.ibanfr.vendingmachine;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +11,6 @@ class VendingMachineTest {
 
     //system under test
     VendingMachine vendingMachine;
-
-    @BeforeEach
-    void setUp() {
-        vendingMachine = new VendingMachine(new LCDDisplay());
-    }
 
     @Test
     @DisplayName("should create a vending machine with the given display")
@@ -105,7 +99,20 @@ class VendingMachineTest {
                 .isEqualTo(BigDecimal.ZERO);
     }
 
-    // [] - insert coin 1 penny => coin is placed in the coin return
+    @Test
+    @DisplayName("insert coin 1 penny, returned coins should be 0.01")
+    void insert_coin_1_penny_returned_coins_should_be_001(){
+
+        //given
+        vendingMachine = new VendingMachine(new LCDDisplay());
+
+        //when
+        vendingMachine.insertCoin(Coin.PENNY);
+
+        //then
+        assertThat(vendingMachine.returnAmount())
+                .isEqualTo(BigDecimal.valueOf(0.01));
+    }
 
     @Test
     @DisplayName("when inserting 1 nickel the machine displays $0.05")
@@ -139,5 +146,4 @@ class VendingMachineTest {
 
 
 
-// [] - insert coin 1 penny => coin is rejected and placed in the coin return
 }

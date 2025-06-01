@@ -6,6 +6,7 @@ public class VendingMachine {
 
     Display display;
     private BigDecimal currentAmount;
+    private BigDecimal returnAmount;
 
     public VendingMachine(Display display) {
         this.display = display;
@@ -23,9 +24,18 @@ public class VendingMachine {
 
     public void insertCoin(Coin coin) {
         if (coin.equals(Coin.PENNY)) {
+            returnAmount(Coin.PENNY.getValue());
             return;
         }
         this.currentAmount = currentAmount.add(coin.getValue());
         display.printMessage("$"+String.format("%.2f", currentAmount));
+    }
+
+    private void returnAmount(BigDecimal returnAmount){
+        this.returnAmount = returnAmount;
+    }
+
+    public BigDecimal returnAmount() {
+        return returnAmount;
     }
 }
