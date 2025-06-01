@@ -23,6 +23,6 @@ public class VendingMachine {
 
     public void insertCoin(Coin coin) {
         this.currentAmount = currentAmount.add(coin.getValue());
-        display.printMessage("$"+currentAmount.toString());
+        display.printMessage("$"+String.format("%.2f", currentAmount));
     }
 }

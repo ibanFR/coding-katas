@@ -1,7 +1,6 @@
 package com.ibanfr.vendingmachine;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -108,7 +107,6 @@ class VendingMachineTest {
 
     @Test
     @DisplayName("when inserting 1 dime the machine displays $0.10")
-    @Disabled("Not implemented yet")
     void when_inserting_1_nickel_the_machine_displays_010(){
 
         //given
