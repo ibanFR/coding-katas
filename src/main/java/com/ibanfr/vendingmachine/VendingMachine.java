@@ -38,4 +38,8 @@ public class VendingMachine {
     public BigDecimal returnAmount() {
         return returnAmount;
     }
+
+    public void returnCoins() {
+        this.returnAmount = currentAmount;
+    }
 }

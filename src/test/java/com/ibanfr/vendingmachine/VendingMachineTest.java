@@ -1,6 +1,7 @@
 package com.ibanfr.vendingmachine;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -144,6 +145,30 @@ class VendingMachineTest {
                 .isEqualTo("$0.10");
     }
 
+    @Nested
+    @DisplayName("Return coins")
+    class Return_coins {
 
+        @Test
+        @DisplayName("When there are no coins inserted the machine should return 0.00")
+        void when_there_are_no_coins_inserted_the_machine_should_return_000(){
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //when
+            vendingMachine.returnCoins();
+
+            //then
+            assertThat(vendingMachine.returnAmount()).isEqualTo(BigDecimal.ZERO);
+        }
+        //TEST LIST
+        // When inserting 1 nickel the machine should return 0.05
+        // When returning coins the current amount should be 0.00
+        // When returning coins the display should show INSERT COIN
+
+
+
+    }
 
 }
