@@ -41,5 +41,7 @@ public class VendingMachine {
 
     public void returnCoins() {
         this.returnAmount = currentAmount;
+        this.currentAmount = BigDecimal.ZERO;
+        display.printMessage("INSERT COIN");
     }
 }

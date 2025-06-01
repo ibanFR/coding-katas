@@ -179,10 +179,41 @@ class VendingMachineTest {
             //then
             assertThat(vendingMachine.returnAmount()).isEqualTo(BigDecimal.valueOf(0.05));
         }
-        //TEST LIST
-        // When inserting 1 nickel the machine should return 0.05
-        // When returning coins the current amount should be 0.00
-        // When returning coins the display should show INSERT COIN
+
+        @Test
+        @DisplayName("when returning coins the current amount should be 0.00")
+        void when_returning_coins_the_current_amount_should_be_000(){
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.insertCoin(Coin.NICKEL);
+
+            //when
+            vendingMachine.returnCoins();
+
+            //then
+            assertThat(vendingMachine.currentAmount()).isEqualTo(BigDecimal.ZERO);
+        }
+
+        @Test
+        @DisplayName("when returning coins the display should show INSERT COIN")
+        void when_returning_coins_the_display_should_show_INSERT_COIN() {
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.insertCoin(Coin.NICKEL);
+
+            //when
+            vendingMachine.returnCoins();
+
+            //then
+            assertThat(vendingMachine.display()).isEqualTo("INSERT COIN");
+        }
+
 
 
 
