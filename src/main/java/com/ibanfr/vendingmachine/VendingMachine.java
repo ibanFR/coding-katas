@@ -8,6 +8,7 @@ import java.util.List;
 
 public class VendingMachine {
 
+    public static final String INSERT_COIN_MESSAGE = "INSERT COIN";
     Display display;
     private BigDecimal currentAmount;
     private BigDecimal returnAmount;
@@ -16,7 +17,7 @@ public class VendingMachine {
     public VendingMachine(Display display) {
         this.display = display;
         this.currentAmount = BigDecimal.ZERO;
-        this.display.printMessage("INSERT COIN");
+        this.display.printMessage(INSERT_COIN_MESSAGE);
         this.products = new ArrayList<>();
     }
 
@@ -39,7 +40,7 @@ public class VendingMachine {
 
     private String currentAmountOrInsertCoin() {
         if (currentAmount.compareTo(BigDecimal.ZERO) == 0) {
-            return "INSERT COIN";
+            return INSERT_COIN_MESSAGE;
         }
         return "$" + String.format("%.2f", currentAmount);
     }
@@ -55,7 +56,7 @@ public class VendingMachine {
     public void returnCoins() {
         this.returnAmount = currentAmount;
         this.currentAmount = BigDecimal.ZERO;
-        display.printMessage("INSERT COIN");
+        display.printMessage(INSERT_COIN_MESSAGE);
     }
 
     public List<Product> listProducts() {
@@ -93,12 +94,17 @@ public class VendingMachine {
     }
 
     private void dispenseProduct(int productNumber) {
+        returnChange(productNumber);
         this.currentAmount = BigDecimal.ZERO;
         products.stream()
                 .filter(product -> product.productNumber() == productNumber)
                 .findFirst()
                 .ifPresent(product -> product.reduceQuantity(1));
         display.printMessage("THANK YOU");
-        display.printMessageAfterDelay("INSERT COIN", Duration.ofSeconds(5));
+        display.printMessageAfterDelay(INSERT_COIN_MESSAGE, Duration.ofSeconds(5));
+    }
+
+    private void returnChange(int productNumber) {
+        this.returnAmount = this.currentAmount.subtract(getProductPrice(productNumber));
     }
 }

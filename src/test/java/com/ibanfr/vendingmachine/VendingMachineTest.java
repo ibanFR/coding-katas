@@ -358,6 +358,37 @@ class VendingMachineTest {
     }
 
     @Nested
+    @DisplayName("Select a product return change")
+    class Select_a_product_return_change {
+
+        @Test
+        @DisplayName("should return change of $0.25")
+        void should_return_change_of_025() {
+
+            //given
+            vendingMachine = new VendingMachine(new LCDDisplay());
+
+            //given
+            vendingMachine.addProducts(List.of(
+                    new Product(1, 1, "chips", BigDecimal.valueOf(0.50))
+            ));
+
+            //given insert $0.75
+            vendingMachine.insertCoin(Coin.QUARTER);
+            vendingMachine.insertCoin(Coin.QUARTER);
+            vendingMachine.insertCoin(Coin.QUARTER);
+
+            //when
+            vendingMachine.selectProduct(1);
+
+            //then
+            assertThat(vendingMachine.returnAmount()).isEqualTo(BigDecimal.valueOf(0.25));
+        }
+
+
+    }
+
+    @Nested
     @DisplayName("Is Sufficient amount for product")
     class Is_Sufficient_amount_for_product {
 
