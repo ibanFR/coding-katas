@@ -91,6 +91,23 @@ class VendingMachineTest {
     }
 
     @Test
+    @DisplayName("when inserting 1 penny the current amount should be 0.00")
+    void when_inserting_1_penny_the_current_amount_should_be_000(){
+
+        //given
+        vendingMachine = new VendingMachine(new LCDDisplay());
+
+        //when
+        vendingMachine.insertCoin(Coin.PENNY);
+
+        //then
+        assertThat(vendingMachine.currentAmount())
+                .isEqualTo(BigDecimal.ZERO);
+    }
+
+    // [] - insert coin 1 penny => coin is placed in the coin return
+
+    @Test
     @DisplayName("when inserting 1 nickel the machine displays $0.05")
     void when_inserting_1_nickel_the_machine_displays_005(){
 
@@ -122,8 +139,5 @@ class VendingMachineTest {
 
 
 
-// [] - add to current amount - insert coin 1 nickel, 1 dime => current amount should be 0.015
-// [] - insert coin 1 nickel => the machine displays $0.05
-// [] - insert coin 1 dime => the machine displays $0.10
 // [] - insert coin 1 penny => coin is rejected and placed in the coin return
 }

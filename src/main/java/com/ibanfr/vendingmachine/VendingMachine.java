@@ -22,6 +22,9 @@ public class VendingMachine {
     }
 
     public void insertCoin(Coin coin) {
+        if (coin.equals(Coin.PENNY)) {
+            return;
+        }
         this.currentAmount = currentAmount.add(coin.getValue());
         display.printMessage("$"+String.format("%.2f", currentAmount));
     }
